@@ -676,3 +676,4 @@ MonoBehaviour:
   levelDoTimer: 1
   levelTime: 240
   levelMaxFuel: 2500
+  levelDoScore: 1

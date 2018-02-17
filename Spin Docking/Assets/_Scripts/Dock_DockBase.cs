@@ -50,8 +50,8 @@ public class Dock_DockBase : MonoBehaviour
                 _isDocked = true;
                 if (busDockingStatusUpdated != null && Game_Manager.NextDockID == dockID)// check if in the right dock
                 {
-                    bus.CurrentFuel = bus.MaxFuel;
                     busDockingStatusUpdated(_isDocked);
+                    bus.CurrentFuel = bus.MaxFuel;
                 }
             }
             else

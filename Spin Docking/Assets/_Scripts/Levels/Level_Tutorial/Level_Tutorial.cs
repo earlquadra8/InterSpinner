@@ -16,6 +16,8 @@ public class Level_Tutorial : MonoBehaviour
     public bool levelDoTimer;
     public float levelTime;
     public float levelMaxFuel;
+    public bool levelDoScore;
+    [Header("Tutorial Only")]
     public Canvas levelTutorial;
     public GameObject pressKey;
     public GameObject UI;
@@ -23,7 +25,7 @@ public class Level_Tutorial : MonoBehaviour
     public GameObject pressNKey;
 
     Bus bus;
-    UI_Manager uiManager;
+    //UI_Manager uiManager;
     Game_Manager gameManager;
     GameObject[] _pressKeyTutorialChilds;
     GameObject[] _uiTutorialChilds;
@@ -41,7 +43,6 @@ public class Level_Tutorial : MonoBehaviour
     private void Awake()
     {
         _instance = this;
-        print("TUT Awake " + UI_Manager.Instance.timerTime);
     }
     private void OnEnable()
     {
@@ -49,15 +50,15 @@ public class Level_Tutorial : MonoBehaviour
         Dock_DockBase.busDockingStatusUpdated += OnBusDocked;
 
         bus = GameObject.FindGameObjectsWithTag("Player")[0].GetComponent<Bus>();
-        //uiManager = GameObject.Find("Canvas_Main").GetComponent<UI_Manager>();
-
         bus.MaxFuel = levelMaxFuel;
+
+        //uiManager = GameObject.Find("Canvas_Main").GetComponent<UI_Manager>();
         //uiManager.doTimer = levelDoTimer;
         //uiManager.timerTime = levelTime;
+
         UI_Manager.Instance.doTimer = levelDoTimer;
         UI_Manager.Instance.timerTime = levelTime;
-
-        print("TUT Enable " + UI_Manager.Instance.timerTime);
+        UI_Manager.Instance.doScore = levelDoScore;
     }
     private void OnDisable()
     {

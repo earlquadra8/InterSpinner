@@ -11,31 +11,28 @@ public class Level_02 : MonoBehaviour
     public bool levelDoTimer;
     public float levelTime;
     public float levelMaxFuel;
+    public bool levelDoScore;
 
     Bus bus;
-    UI_Manager uiManager;
+    //UI_Manager uiManager;
     Game_Manager gameManager;
 
 
     private void Awake()
     {
         _instance = this;
-        print("Lv2 Awake "+ UI_Manager.Instance.timerTime);
     }
     private void OnEnable()
     {
         bus = GameObject.FindGameObjectsWithTag("Player")[0].GetComponent<Bus>();
-        //uiManager = GameObject.Find("Canvas_Main").GetComponent<UI_Manager>();
-
         bus.MaxFuel = levelMaxFuel;
+
+        //uiManager = GameObject.Find("Canvas_Main").GetComponent<UI_Manager>();
         //uiManager.doTimer = levelDoTimer;
         //uiManager.timerTime = levelTime;
+
         UI_Manager.Instance.doTimer = levelDoTimer;
         UI_Manager.Instance.timerTime = levelTime;
-
-        print("Lv2 Enable " + UI_Manager.Instance.timerTime);
-    }
-    private void Start()
-    {
+        UI_Manager.Instance.doScore = levelDoScore;
     }
 }

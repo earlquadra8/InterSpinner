@@ -18,6 +18,10 @@ public class UI_Manager : MonoBehaviour
     public float timerTime;
     public Text timerText;
 
+    public bool doScore;
+    public float score;
+    public Text scoreBoard;
+
     public GameObject pausePanel;
     public GameObject endPanel;
     public Text anyKey;
@@ -29,7 +33,6 @@ public class UI_Manager : MonoBehaviour
     private void Awake()
     {
         _instance = this;
-        print("UI Awake " + timerTime);
     }
     #region OnEnable & OnDisable
     private void OnEnable()
@@ -37,16 +40,18 @@ public class UI_Manager : MonoBehaviour
         Game_Manager.NextDockIDGenerated += UpdateNextDockText;
         Game_Manager.GameStatusChanged += ToggleGuide;
         Game_Manager.GameStatusChanged += ToggleEndPanel;
+        Game_Manager.GameStatusChanged += DisableScoring;
         Dock_DockBase.busDockingStatusUpdated += UpdateDockStatusText;
-
-        print("UI Enable "+ timerTime);
+        Dock_DockBase.busDockingStatusUpdated += Scoring;
     }
     private void OnDisable()
     {
         Game_Manager.NextDockIDGenerated -= UpdateNextDockText;
         Game_Manager.GameStatusChanged -= ToggleGuide;
         Game_Manager.GameStatusChanged -= ToggleEndPanel;
+        Game_Manager.GameStatusChanged -= DisableScoring;
         Dock_DockBase.busDockingStatusUpdated -= UpdateDockStatusText;
+        Dock_DockBase.busDockingStatusUpdated -= Scoring;
     }
     #endregion OnEnable & OnDisable
     void Start ()
@@ -57,7 +62,7 @@ public class UI_Manager : MonoBehaviour
         endPanel.SetActive(false);
 
         timerText.text = string.Format("Timer: {0}", timerTime.ToString("000"));
-        print("UI Start " + timerTime);
+        UpdateScoreBoard();
     }
 
     void Update ()
@@ -125,11 +130,11 @@ public class UI_Manager : MonoBehaviour
         }
     }
     
-    IEnumerator ShowAnyKey()
-    {
-        yield return new WaitForSecondsRealtime(3);
-        anyKey.gameObject.SetActive(true);
-    }
+    //IEnumerator ShowAnyKey()
+    //{
+    //    yield return new WaitForSecondsRealtime(3);
+    //    anyKey.gameObject.SetActive(true);
+    //}
 
     void TimerUpdate()
     {
@@ -143,5 +148,27 @@ public class UI_Manager : MonoBehaviour
             Game_Manager.GameStatus = Game_Manager.GameStatusEnum.Overed;
         }
         timerText.text = string.Format("Timer: {0}", timerTime.ToString("000"));
+    }
+
+    void DisableScoring(Game_Manager.GameStatusEnum status)
+    {
+        if (status == Game_Manager.GameStatusEnum.Overed)
+        {
+            doScore = false;
+        }
+    }
+
+    void Scoring(bool isCorrectlyDocked)
+    {
+        if (doScore && isCorrectlyDocked)
+        {
+            score += (100 + ((bus.CurrentFuel / bus.MaxFuel) * 100));
+        }
+        UpdateScoreBoard();
+    }
+
+    void UpdateScoreBoard()
+    {
+        scoreBoard.text = string.Format("Score: {0}", score.ToString("0000"));
     }
 }
