@@ -4,7 +4,11 @@ using UnityEngine;
 
 public class WelcomeSceneScript : MonoBehaviour
 {
+    public delegate void DeleteStars();
+    public static DeleteStars DeletedStars;
+
     public GameObject sceneSelectPanel;
+    public GameObject levelParent;
 
     private void Start()
     {
@@ -23,5 +27,13 @@ public class WelcomeSceneScript : MonoBehaviour
                 sceneSelectPanel.SetActive(false);
             }
         }
-    } 
+    }
+    public void ResetScore()
+    {
+        PlayerPrefs.DeleteAll();
+        if (DeletedStars != null)
+        {
+            DeletedStars();
+        }
+    }
 }

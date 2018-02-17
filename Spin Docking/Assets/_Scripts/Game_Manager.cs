@@ -140,7 +140,6 @@ public class Game_Manager : MonoBehaviour
             {
                 Cursor.visible = false;
                 Cursor.lockState = CursorLockMode.Locked;
-
             }
         }
     }

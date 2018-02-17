@@ -13,10 +13,12 @@ public class Level_Tutorial : MonoBehaviour
     private static Level_Tutorial _instance;
     public static Level_Tutorial Instance { get { return _instance; } }
 
+    public int levelNum;
     public bool levelDoTimer;
     public float levelTime;
     public float levelMaxFuel;
     public bool levelDoScore;
+    public float levelThreeStarScore;
     [Header("Tutorial Only")]
     public Canvas levelTutorial;
     public GameObject pressKey;
@@ -59,11 +61,14 @@ public class Level_Tutorial : MonoBehaviour
         UI_Manager.Instance.doTimer = levelDoTimer;
         UI_Manager.Instance.timerTime = levelTime;
         UI_Manager.Instance.doScore = levelDoScore;
+        UI_Manager.Instance.threeStarScore = levelThreeStarScore;
     }
     private void OnDisable()
     {
         TutorialItemMovedOn -= EnableTutorialItems;
         Dock_DockBase.busDockingStatusUpdated -= OnBusDocked;
+
+        SaveStars();
     }
     private void Start()
     {
@@ -240,6 +245,13 @@ public class Level_Tutorial : MonoBehaviour
         {
             everDocked = true;
             Game_Manager.GameStatus = Game_Manager.GameStatusEnum.Overed;
+        }
+    }
+    void SaveStars()
+    {
+        if (UI_Manager.Instance.StarCount > PlayerPrefs.GetInt(("level" + levelNum + "StarCount"), 0))
+        {
+            PlayerPrefs.SetInt(("level" + levelNum + "StarCount"), UI_Manager.Instance.StarCount);
         }
     }
 }

@@ -23,12 +23,17 @@ public class UI_Manager : MonoBehaviour
     public Text scoreBoard;
 
     public GameObject pausePanel;
-    public GameObject endPanel;
-    public Text anyKey;
 
+    public GameObject endPanel;
+    public Text endScore;
+    public GameObject starsParent;
+    public float threeStarScore;
+
+    int _starCount;
     GameObject busGObj;
     Bus bus;
 
+    public int StarCount { get { return _starCount; } }
 
     private void Awake()
     {
@@ -120,6 +125,11 @@ public class UI_Manager : MonoBehaviour
             {
                 endPanel.SetActive(true);
             }
+            if (!Cursor.visible)
+            {
+                Cursor.visible = true;
+                Cursor.lockState = CursorLockMode.None;
+            }
         }
     }
     public void EndPanelCrossButton()
@@ -163,12 +173,29 @@ public class UI_Manager : MonoBehaviour
         if (doScore && isCorrectlyDocked)
         {
             score += (100 + ((bus.CurrentFuel / bus.MaxFuel) * 100));
+            UpdateScoreBoard();
         }
-        UpdateScoreBoard();
     }
 
     void UpdateScoreBoard()
     {
         scoreBoard.text = string.Format("Score: {0}", score.ToString("0000"));
+        endScore.text = string.Format("Your Score: {0}", score.ToString("0000"));
+        EnableStars();
+    }
+
+    void EnableStars()
+    {
+        float starScore = score;
+        float scoreDivision = threeStarScore / 3;
+        for (int i = 0; i < 3; i++)
+        {
+            starScore -= scoreDivision;
+            if (starScore >= 0)
+            {
+                starsParent.transform.GetChild(i).gameObject.SetActive(true);
+                _starCount++;
+            }
+        }
     }
 }

@@ -563,6 +563,10 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1697929011271836, guid: 953bcb45ef38cb2488654126568029af, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 953bcb45ef38cb2488654126568029af, type: 2}
   m_IsPrefabParent: 0
@@ -673,7 +677,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6e99d0308b891f4b8e1bdc6301b5bfa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  levelNum: 2
   levelDoTimer: 1
-  levelTime: 240
+  levelTime: 180
   levelMaxFuel: 2500
   levelDoScore: 1
+  levelThreeStarScore: 531
