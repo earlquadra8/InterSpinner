@@ -43,9 +43,9 @@ public class Level_02 : MonoBehaviour
     }
     void SaveStars()
     {
-        if (UI_Manager.Instance.StarCount > PlayerPrefs.GetInt("level" + levelNum + "StarCount",0 ))
+        if (UI_Manager.Instance.StarCount > PlayerPrefs.GetInt(("level" + levelNum + "StarCount"), 0 ))
         {
-            PlayerPrefs.SetInt("level" + levelNum + "StarCount", UI_Manager.Instance.StarCount);
+            PlayerPrefs.SetInt(("level" + levelNum + "StarCount"), UI_Manager.Instance.StarCount);
         }
     }
 }
