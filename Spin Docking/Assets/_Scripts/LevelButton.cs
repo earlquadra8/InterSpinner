@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class LevelButton : MonoBehaviour
 {
+    
     public int levelNum;
     public Text levelText;
     public GameObject starParent;
@@ -12,6 +13,8 @@ public class LevelButton : MonoBehaviour
     private void OnEnable()
     {
         WelcomeSceneScript.DeletedStars += DisableAllStars;
+
+        levelNum = transform.GetSiblingIndex() + 1;
     }
     private void OnDisable()
     {
@@ -45,5 +48,10 @@ public class LevelButton : MonoBehaviour
         {
             starParent.transform.GetChild(i).gameObject.SetActive(false);
         }
+    }
+
+    public void ButtonLoadSceneByID()
+    {
+        LoadScene_Manager.Instance.LoadSceneByID(levelNum);
     }
 }

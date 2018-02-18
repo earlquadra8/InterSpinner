@@ -236,7 +236,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5bc009cd2bf90045806832d7330526e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelName: 
+  levelNum: 0
   levelText: {fileID: 114431998041852268}
   starParent: {fileID: 1601729843192068}
 --- !u!114 &114909555649708776
@@ -332,9 +332,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: LoadSceneByID
-        m_Mode: 3
+      - m_Target: {fileID: 114887018389648768}
+        m_MethodName: ButtonLoadSceneByID
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
