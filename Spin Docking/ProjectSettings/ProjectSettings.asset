@@ -143,7 +143,7 @@ PlayerSettings:
   applicationIdentifier:
     Standalone: com.NeetStudio.InterSpinner
   buildNumber:
-    Standalone: 5
+    Standalone: 6
   AndroidBundleVersionCode: 1
   AndroidMinSdkVersion: 16
   AndroidTargetSdkVersion: 0
