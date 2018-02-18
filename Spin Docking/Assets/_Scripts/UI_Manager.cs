@@ -30,7 +30,7 @@ public class UI_Manager : MonoBehaviour
     public float threeStarScore;
 
     int _starCount;
-    GameObject busGObj;
+    Level_Manager levelManager;
     Bus bus;
 
     public int StarCount { get { return _starCount; } }
@@ -61,10 +61,16 @@ public class UI_Manager : MonoBehaviour
     #endregion OnEnable & OnDisable
     void Start ()
     {
-        busGObj = GameObject.FindGameObjectsWithTag("Player")[0];
-        bus = busGObj.GetComponent<Bus>();
+        bus = GameObject.FindGameObjectsWithTag("Player")[0].GetComponent<Bus>();
+
+        levelManager = GameObject.Find("Level_Manager").GetComponent<Level_Manager>();
+        doTimer = levelManager.levelDoTimer;
+        timerTime = levelManager.levelTime;
+        doScore = levelManager.levelDoScore;
+        threeStarScore = levelManager.levelThreeStarScore;
+
         UpdateDockStatusText(false);// initialize
-        endPanel.SetActive(false);
+        endPanel.SetActive(false);// initialize
 
         timerText.text = string.Format("Timer: {0}", timerTime.ToString("000"));
         UpdateScoreBoard();

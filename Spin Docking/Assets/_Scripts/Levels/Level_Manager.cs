@@ -15,7 +15,6 @@ public class Level_Manager : MonoBehaviour
     public float levelThreeStarScore;
 
     Bus bus;
-    Game_Manager gameManager;
 
     private void Awake()
     {
@@ -28,10 +27,10 @@ public class Level_Manager : MonoBehaviour
         bus.MaxFuel = levelMaxFuel;
         //print("uiManager != null "+ (UI_Manager.Instance != null));// somehow UI_Manager has no instance when the game is started.
         //print("gameManager != null " + (Game_Manager.Instance != null));
-        UI_Manager.Instance.doTimer = levelDoTimer;
-        UI_Manager.Instance.timerTime = levelTime;
-        UI_Manager.Instance.doScore = levelDoScore;
-        UI_Manager.Instance.threeStarScore = levelThreeStarScore;
+        //UI_Manager.Instance.doTimer = levelDoTimer;
+        //UI_Manager.Instance.timerTime = levelTime;
+        //UI_Manager.Instance.doScore = levelDoScore;
+        //UI_Manager.Instance.threeStarScore = levelThreeStarScore;
     }
     private void OnDisable()
     {

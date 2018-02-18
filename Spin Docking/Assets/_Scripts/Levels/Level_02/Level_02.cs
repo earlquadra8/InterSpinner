@@ -15,7 +15,6 @@ public class Level_02 : MonoBehaviour
     public float levelThreeStarScore;
 
     Bus bus;
-    Game_Manager gameManager;
 
     private void Awake()
     {
