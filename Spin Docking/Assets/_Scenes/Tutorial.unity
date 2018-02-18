@@ -2584,6 +2584,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1553705933}
+  - component: {fileID: 1553705934}
   - component: {fileID: 1553705932}
   m_Layer: 0
   m_Name: Level_Manager
@@ -2603,12 +2604,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3837b9959f2ff64995323fc5ab83adf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelNum: 1
-  levelDoTimer: 0
-  levelTime: 999
-  levelMaxFuel: 3000
-  levelDoScore: 1
-  levelThreeStarScore: 171
   levelTutorial: {fileID: 1609337106}
   pressKey: {fileID: 2060493080}
   UI: {fileID: 1893714340}
@@ -2629,6 +2624,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1553705934
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1553705931}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d540aaf9d4da8a488397c68ad4f56f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelNum: 1
+  levelDoTimer: 0
+  levelTime: 999
+  levelMaxFuel: 3000
+  levelDoScore: 1
+  levelThreeStarScore: 171
 --- !u!1001 &1560479820
 Prefab:
   m_ObjectHideFlags: 0

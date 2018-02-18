@@ -13,26 +13,15 @@ public class Level_Tutorial : MonoBehaviour
     private static Level_Tutorial _instance;
     public static Level_Tutorial Instance { get { return _instance; } }
 
-    public int levelNum;
-    public bool levelDoTimer;
-    public float levelTime;
-    public float levelMaxFuel;
-    public bool levelDoScore;
-    public float levelThreeStarScore;
-    [Header("Tutorial Only")]
     public Canvas levelTutorial;
     public GameObject pressKey;
     public GameObject UI;
     public GameObject gamePlay;
     public GameObject pressNKey;
 
-    Bus bus;
-    //UI_Manager uiManager;
-    Game_Manager gameManager;
     GameObject[] _pressKeyTutorialChilds;
     GameObject[] _uiTutorialChilds;
     GameObject[] _gamePlayTutorialChilds;
-
 
     public enum TutorialStage : int
     {
@@ -50,25 +39,12 @@ public class Level_Tutorial : MonoBehaviour
     {
         TutorialItemMovedOn += EnableTutorialItems;
         Dock_DockBase.busDockingStatusUpdated += OnBusDocked;
-
-        bus = GameObject.FindGameObjectsWithTag("Player")[0].GetComponent<Bus>();
-        bus.MaxFuel = levelMaxFuel;
-
-        //uiManager = GameObject.Find("Canvas_Main").GetComponent<UI_Manager>();
-        //uiManager.doTimer = levelDoTimer;
-        //uiManager.timerTime = levelTime;
-
-        UI_Manager.Instance.doTimer = levelDoTimer;
-        UI_Manager.Instance.timerTime = levelTime;
-        UI_Manager.Instance.doScore = levelDoScore;
-        UI_Manager.Instance.threeStarScore = levelThreeStarScore;
     }
     private void OnDisable()
     {
         TutorialItemMovedOn -= EnableTutorialItems;
         Dock_DockBase.busDockingStatusUpdated -= OnBusDocked;
 
-        SaveStars();
     }
     private void Start()
     {
@@ -245,13 +221,6 @@ public class Level_Tutorial : MonoBehaviour
         {
             everDocked = true;
             Game_Manager.GameStatus = Game_Manager.GameStatusEnum.Overed;
-        }
-    }
-    void SaveStars()
-    {
-        if (UI_Manager.Instance.StarCount > PlayerPrefs.GetInt(("level" + levelNum + "StarCount"), 0))
-        {
-            PlayerPrefs.SetInt(("level" + levelNum + "StarCount"), UI_Manager.Instance.StarCount);
         }
     }
 }

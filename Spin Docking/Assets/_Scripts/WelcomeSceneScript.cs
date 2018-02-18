@@ -1,18 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class WelcomeSceneScript : MonoBehaviour
 {
     public delegate void DeleteStars();
     public static DeleteStars DeletedStars;
 
+    public Text verNum;
     public GameObject sceneSelectPanel;
-    public GameObject levelParent;
 
     private void Start()
     {
         sceneSelectPanel.SetActive(false);
+        verNum.text = string.Format("Ver: {0}", Application.version);
     }
     public void ToggleSceneSelection()
     {

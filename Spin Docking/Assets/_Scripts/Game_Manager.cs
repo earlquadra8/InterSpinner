@@ -100,6 +100,7 @@ public class Game_Manager : MonoBehaviour
             int randomDockID;
             do
             {
+                //print("gm stationHolder not null? " + (stationHolder != null));
                 randomDockID = Random.Range(0, stationHolder.transform.childCount);
             }
             while (_nextDockID == randomDockID && stationHolder.transform.childCount > 1);

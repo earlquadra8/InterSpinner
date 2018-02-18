@@ -17,7 +17,7 @@ public class LoadScene_Manager : MonoBehaviour
     {
         SceneManager.LoadScene(sceneID);
     }
-    public void LadScenByName(string sceneName)
+    public void LoadScenByName(string sceneName)
     {
         SceneManager.LoadScene(sceneName);
     }
