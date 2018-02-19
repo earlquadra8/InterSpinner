@@ -41,6 +41,8 @@ public class Bus : MonoBehaviour
     Rigidbody _rb;
     AudioSource _thrusterSFX;
 
+    Level_Manager _levelManager;
+
     #region prop
     public bool CanControlSpin
     {
@@ -106,8 +108,11 @@ public class Bus : MonoBehaviour
     {
         _rb = GetComponent<Rigidbody>();
         _thrusterSFX = GetComponent<AudioSource>();
+        _levelManager = FindObjectOfType<Level_Manager>();//pull value for initialization instead of push, Returns the first active loaded object of Type type.
+        _maxFuel = _levelManager.levelMaxFuel;
         _currentFuel = _maxFuel;
         _activeThruster = new bool[_thrusterParticle.Length];
+        
     }
 	
 	void FixedUpdate ()

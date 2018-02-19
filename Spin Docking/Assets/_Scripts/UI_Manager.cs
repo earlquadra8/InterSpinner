@@ -30,8 +30,8 @@ public class UI_Manager : MonoBehaviour
     public float threeStarScore;
 
     int _starCount;
-    Level_Manager levelManager;
-    Bus bus;
+    Level_Manager _levelManager;
+    Bus _bus;
 
     public int StarCount { get { return _starCount; } }
 
@@ -61,13 +61,13 @@ public class UI_Manager : MonoBehaviour
     #endregion OnEnable & OnDisable
     void Start ()
     {
-        bus = GameObject.FindGameObjectsWithTag("Player")[0].GetComponent<Bus>();
+        _bus = FindObjectOfType<Bus>();//GameObject.FindGameObjectsWithTag("Player")[0].GetComponent<Bus>();
 
-        levelManager = GameObject.Find("Level_Manager").GetComponent<Level_Manager>();
-        doTimer = levelManager.levelDoTimer;
-        timerTime = levelManager.levelTime;
-        doScore = levelManager.levelDoScore;
-        threeStarScore = levelManager.levelThreeStarScore;
+        _levelManager = FindObjectOfType<Level_Manager>();//GameObject.Find("Level_Manager").GetComponent<Level_Manager>();
+        doTimer = _levelManager.levelDoTimer;// initialize
+        timerTime = _levelManager.levelTime;// initialize
+        doScore = _levelManager.levelDoScore;// initialize
+        threeStarScore = _levelManager.levelThreeStarScore;// initialize
 
         UpdateDockStatusText(false);// initialize
         endPanel.SetActive(false);// initialize
@@ -84,9 +84,9 @@ public class UI_Manager : MonoBehaviour
 
     void UpdateMeters()
     {
-        angularMeter.text = string.Format("Angular Velocity |X: {0} |Y: {1} |Z: {2}", bus.LocalAngularVelocity.x.ToString(" +00.0;-00.0"), bus.LocalAngularVelocity.y.ToString(" +00.0;-00.0"), bus.LocalAngularVelocity.z.ToString(" +00.0;-00.0"));
-        driftMeter.text = string.Format("Drifting Velocity |X: {0} |Y: {1} |Z: {2}", bus.LocalVelocity.x.ToString("+00.0;-00.0"), bus.LocalVelocity.y.ToString("+00.0;-00.0"), bus.LocalVelocity.z.ToString("+00.0;-00.0"));
-        fuelMeter.text = "Fuel: " + bus.CurrentFuel.ToString("0000");
+        angularMeter.text = string.Format("Angular Velocity |X: {0} |Y: {1} |Z: {2}", _bus.LocalAngularVelocity.x.ToString(" +00.0;-00.0"), _bus.LocalAngularVelocity.y.ToString(" +00.0;-00.0"), _bus.LocalAngularVelocity.z.ToString(" +00.0;-00.0"));
+        driftMeter.text = string.Format("Drifting Velocity |X: {0} |Y: {1} |Z: {2}", _bus.LocalVelocity.x.ToString("+00.0;-00.0"), _bus.LocalVelocity.y.ToString("+00.0;-00.0"), _bus.LocalVelocity.z.ToString("+00.0;-00.0"));
+        fuelMeter.text = "Fuel: " + _bus.CurrentFuel.ToString("0000");
     }
 
     void UpdateNextDockText()
@@ -178,7 +178,7 @@ public class UI_Manager : MonoBehaviour
     {
         if (doScore && isCorrectlyDocked)
         {
-            score += (100 + ((bus.CurrentFuel / bus.MaxFuel) * 100));
+            score += (100 + ((_bus.CurrentFuel / _bus.MaxFuel) * 100));
             UpdateScoreBoard();
         }
     }

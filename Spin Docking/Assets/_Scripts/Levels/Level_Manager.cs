@@ -14,23 +14,9 @@ public class Level_Manager : MonoBehaviour
     public bool levelDoScore;
     public float levelThreeStarScore;
 
-    Bus bus;
-
     private void Awake()
     {
         _instance = this;
-    }
-
-    private void OnEnable()
-    {
-        bus = GameObject.FindGameObjectsWithTag("Player")[0].GetComponent<Bus>();
-        bus.MaxFuel = levelMaxFuel;
-        //print("uiManager != null "+ (UI_Manager.Instance != null));// somehow UI_Manager has no instance when the game is started.
-        //print("gameManager != null " + (Game_Manager.Instance != null));
-        //UI_Manager.Instance.doTimer = levelDoTimer;
-        //UI_Manager.Instance.timerTime = levelTime;
-        //UI_Manager.Instance.doScore = levelDoScore;
-        //UI_Manager.Instance.threeStarScore = levelThreeStarScore;
     }
     private void OnDisable()
     {
