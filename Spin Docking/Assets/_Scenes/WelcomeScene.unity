@@ -561,7 +561,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &787548775
 RectTransform:
   m_ObjectHideFlags: 0
@@ -717,7 +717,7 @@ Prefab:
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1791641897}
+      objectReference: {fileID: 868321915}
     - target: {fileID: 224674952983296694, guid: 6da21d9bde7943042b187afad89a01c7,
         type: 2}
       propertyPath: m_AnchorMin.y
@@ -844,6 +844,11 @@ Prefab:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: ButtonLoadSceneByID
       objectReference: {fileID: 0}
+    - target: {fileID: 114969540293833338, guid: 6da21d9bde7943042b187afad89a01c7,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6da21d9bde7943042b187afad89a01c7, type: 2}
   m_IsPrefabParent: 0
@@ -852,6 +857,12 @@ RectTransform:
   m_PrefabParentObject: {fileID: 224446179802027766, guid: 6da21d9bde7943042b187afad89a01c7,
     type: 2}
   m_PrefabInternal: {fileID: 868321913}
+--- !u!114 &868321915 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114887018389648768, guid: 6da21d9bde7943042b187afad89a01c7,
+    type: 2}
+  m_PrefabInternal: {fileID: 868321913}
+  m_Script: {fileID: 11500000, guid: c5bc009cd2bf90045806832d7330526e, type: 3}
 --- !u!1 &904283162
 GameObject:
   m_ObjectHideFlags: 0
@@ -1629,12 +1640,6 @@ MonoBehaviour:
   m_Spacing: {x: 20, y: 20}
   m_Constraint: 1
   m_ConstraintCount: 4
---- !u!114 &1791641897 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114887018389648768, guid: 6da21d9bde7943042b187afad89a01c7,
-    type: 2}
-  m_PrefabInternal: {fileID: 868321913}
-  m_Script: {fileID: 11500000, guid: c5bc009cd2bf90045806832d7330526e, type: 3}
 --- !u!1 &1916080471
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Level_Manager : MonoBehaviour
 {
@@ -17,6 +18,13 @@ public class Level_Manager : MonoBehaviour
     private void Awake()
     {
         _instance = this;
+    }
+    private void OnEnable()
+    {
+        if (SceneManager.GetActiveScene().buildIndex >= 0)
+        {
+            levelNum = SceneManager.GetActiveScene().buildIndex;
+        }
     }
     private void OnDisable()
     {
