@@ -220,7 +220,7 @@ public class Level_Tutorial : MonoBehaviour
         if (isDockedCorrectly && !everDocked)
         {
             everDocked = true;
-            Game_Manager.GameStatus = Game_Manager.GameStateEnum.Overed;
+            Game_Manager.GameStatus = Game_Manager.GameStatusEnum.Overed;
         }
     }
 }

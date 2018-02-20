@@ -43,18 +43,18 @@ public class UI_Manager : MonoBehaviour
     private void OnEnable()
     {
         Game_Manager.NextDockIDGenerated += UpdateNextDockText;
-        Game_Manager.GameStateChanged += ToggleGuide;
-        Game_Manager.GameStateChanged += ToggleEndPanel;
-        Game_Manager.GameStateChanged += DisableScoring;
+        Game_Manager.GameStatusChanged += ToggleGuide;
+        Game_Manager.GameStatusChanged += ToggleEndPanel;
+        Game_Manager.GameStatusChanged += DisableScoring;
         Dock_DockBase.busDockingStatusUpdated += UpdateDockStatusText;
         Dock_DockBase.busDockingStatusUpdated += Scoring;
     }
     private void OnDisable()
     {
         Game_Manager.NextDockIDGenerated -= UpdateNextDockText;
-        Game_Manager.GameStateChanged -= ToggleGuide;
-        Game_Manager.GameStateChanged -= ToggleEndPanel;
-        Game_Manager.GameStateChanged -= DisableScoring;
+        Game_Manager.GameStatusChanged -= ToggleGuide;
+        Game_Manager.GameStatusChanged -= ToggleEndPanel;
+        Game_Manager.GameStatusChanged -= DisableScoring;
         Dock_DockBase.busDockingStatusUpdated -= UpdateDockStatusText;
         Dock_DockBase.busDockingStatusUpdated -= Scoring;
     }
@@ -106,16 +106,16 @@ public class UI_Manager : MonoBehaviour
         }
     }
 
-    void ToggleGuide(Game_Manager.GameStateEnum state)
+    void ToggleGuide(Game_Manager.GameStatusEnum status)
     {
-        if (state == Game_Manager.GameStateEnum.Paused)
+        if (status == Game_Manager.GameStatusEnum.Paused)
         {
             if (!pausePanel.activeSelf)
             {
                 pausePanel.SetActive(true);
             }
         }
-        else if (state == Game_Manager.GameStateEnum.Resumed)
+        else if (status == Game_Manager.GameStatusEnum.Resumed)
         {
             if (pausePanel.activeSelf)
             {
@@ -123,9 +123,9 @@ public class UI_Manager : MonoBehaviour
             }
         }
     }
-    void ToggleEndPanel(Game_Manager.GameStateEnum state)
+    void ToggleEndPanel(Game_Manager.GameStatusEnum status)
     {
-        if (state == Game_Manager.GameStateEnum.Overed)
+        if (status == Game_Manager.GameStatusEnum.Overed)
         {
             if (!endPanel.activeSelf)
             {
@@ -161,14 +161,14 @@ public class UI_Manager : MonoBehaviour
         else if(timerTime <= 0.000f)
         {
             timerTime = 0;
-            Game_Manager.GameStatus = Game_Manager.GameStateEnum.Overed;
+            Game_Manager.GameStatus = Game_Manager.GameStatusEnum.Overed;
         }
         timerText.text = string.Format("Timer: {0}", timerTime.ToString("000"));
     }
 
-    void DisableScoring(Game_Manager.GameStateEnum state)
+    void DisableScoring(Game_Manager.GameStatusEnum status)
     {
-        if (state == Game_Manager.GameStateEnum.Overed)
+        if (status == Game_Manager.GameStatusEnum.Overed)
         {
             doScore = false;
         }

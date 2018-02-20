@@ -6,8 +6,8 @@ public class Game_Manager : MonoBehaviour
 {
     public delegate void GetNextDockID();
     public static event GetNextDockID NextDockIDGenerated;
-    public delegate void GameStateEvent(GameStateEnum state);
-    public static event GameStateEvent GameStateChanged;
+    public delegate void GameStatusEvent(GameStatusEnum status);
+    public static event GameStatusEvent GameStatusChanged;
 
     private static Game_Manager _instance;
     public static Game_Manager Instance
@@ -23,7 +23,7 @@ public class Game_Manager : MonoBehaviour
         }
     }
 
-    private static GameStateEnum _gameState;
+    private static GameStatusEnum _gameStatus;
     private static int _nextDockID = -1;
 
     public bool enableGuideOnStart = false;
@@ -32,22 +32,22 @@ public class Game_Manager : MonoBehaviour
 
     #region prop
     public static int NextDockID { get { return _nextDockID; } }
-    public static GameStateEnum GameStatus
+    public static GameStatusEnum GameStatus
     {
-        get { return _gameState;}
+        get { return _gameStatus;}
         set
         {
-                _gameState = value;
+                _gameStatus = value;
             
-            if (GameStateChanged != null)
+            if (GameStatusChanged != null)
             {
-                GameStateChanged(_gameState);
+                GameStatusChanged(_gameStatus);
             }
         }
     }
     #endregion prop
 
-    public enum GameStateEnum : int
+    public enum GameStatusEnum : int
     {
         PreStart,
         Started,
@@ -65,7 +65,7 @@ public class Game_Manager : MonoBehaviour
     {
         Dock_DockBase.busDockingStatusUpdated += GenerateNextDockID;
 
-        _gameState = GameStateEnum.Started;
+        _gameStatus = GameStatusEnum.Started;
     }
     private void OnDisable()
     {
@@ -95,7 +95,7 @@ public class Game_Manager : MonoBehaviour
     }
     void GenerateNextDockID(bool isDocked)
     {
-        if (isDocked && _gameState != GameStateEnum.Overed)
+        if (isDocked && _gameStatus != GameStatusEnum.Overed)
         {
             int randomDockID;
             do
@@ -118,10 +118,10 @@ public class Game_Manager : MonoBehaviour
         if (Time.timeScale == 1)
         {
             Time.timeScale = 0;
-            _gameState = GameStateEnum.Paused;
-            if (GameStateChanged != null)
+            _gameStatus = GameStatusEnum.Paused;
+            if (GameStatusChanged != null)
             {
-                GameStateChanged(_gameState);
+                GameStatusChanged(_gameStatus);
             }
             if (!Cursor.visible)
             {
@@ -132,10 +132,10 @@ public class Game_Manager : MonoBehaviour
         else if (Time.timeScale == 0)
         {
             Time.timeScale = 1;
-            _gameState = GameStateEnum.Resumed;
-            if (GameStateChanged != null)
+            _gameStatus = GameStatusEnum.Resumed;
+            if (GameStatusChanged != null)
             {
-                GameStateChanged(_gameState);
+                GameStatusChanged(_gameStatus);
             }
             if (Cursor.visible)
             {
