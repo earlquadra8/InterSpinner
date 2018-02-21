@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,23 +8,28 @@ public class UI_Manager : MonoBehaviour
 {
     private static UI_Manager _instance;
     public static UI_Manager Instance { get { return _instance; } }
-
+    [Header("Next Dock ID")]
+    public Animator nextDockIDAnimator;
     public Text nextDockID;
+    [Header("UI")]
     public Text angularMeter;
     public Text driftMeter;
     public Text fuelMeter;
+    [Header("Dock Status")]
+    public Animator dockStatusAnimator;
     public Text dockStatus;
-
+    [Header("Timer")]
+    public Animator timerAnimator;
     public bool doTimer;
     public float timerTime;
     public Text timerText;
-
+    [Header("Score Board")]
     public bool doScore;
     public float score;
     public Text scoreBoard;
-
+    [Header("Pause Panel")]
     public GameObject pausePanel;
-
+    [Header("End Panel")]
     public GameObject endPanel;
     public Text endScore;
     public GameObject starsParent;
@@ -79,19 +85,31 @@ public class UI_Manager : MonoBehaviour
     void Update ()
     {
         UpdateMeters();
+    }
+    private void FixedUpdate()
+    {
         TimerUpdate();
     }
 
     void UpdateMeters()
     {
-        angularMeter.text = string.Format("Angular Velocity |X: {0} |Y: {1} |Z: {2}", _bus.LocalAngularVelocity.x.ToString(" +00.0;-00.0"), _bus.LocalAngularVelocity.y.ToString(" +00.0;-00.0"), _bus.LocalAngularVelocity.z.ToString(" +00.0;-00.0"));
-        driftMeter.text = string.Format("Drifting Velocity |X: {0} |Y: {1} |Z: {2}", _bus.LocalVelocity.x.ToString("+00.0;-00.0"), _bus.LocalVelocity.y.ToString("+00.0;-00.0"), _bus.LocalVelocity.z.ToString("+00.0;-00.0"));
+        float AngularX = _bus.LocalAngularVelocity.x, AngularY = _bus.LocalAngularVelocity.y, AngularZ = _bus.LocalAngularVelocity.z;
+        AngularX = (float)Math.Round(AngularX, 1);
+        AngularY = (float)Math.Round(AngularY, 1);
+        AngularZ = (float)Math.Round(AngularZ, 1);
+        float DriftX = _bus.LocalVelocity.x, DriftY = _bus.LocalVelocity.y, DriftZ = _bus.LocalVelocity.z;
+        DriftX = (float)Math.Round(DriftX, 1);
+        DriftY = (float)Math.Round(DriftY, 1);
+        DriftZ = (float)Math.Round(DriftZ, 1);
+
+        angularMeter.text = string.Format("Angular Velocity |X: {0} |Y: {1} |Z: {2}", AngularX.ToString("＋00.0;－00.0"), AngularY.ToString("＋00.0;－00.0"), AngularZ.ToString("＋00.0;－00.0"));
+        driftMeter.text = string.Format("Drifting Velocity |X: {0} |Y: {1} |Z: {2}", DriftX.ToString("＋00.0;－00.0"), DriftY.ToString("＋00.0;－00.0"), DriftZ.ToString("＋00.0;－00.0"));
         fuelMeter.text = "Fuel: " + _bus.CurrentFuel.ToString("0000");
     }
-
     void UpdateNextDockText()
     {
         nextDockID.text = "Going to Dock " + Game_Manager.NextDockID.ToString("00");
+        nextDockIDAnimator.SetTrigger("textTrigger");
     }
 
     void UpdateDockStatusText(bool isDocked)
@@ -99,6 +117,7 @@ public class UI_Manager : MonoBehaviour
         if (isDocked)
         {
             dockStatus.text = "Status: Docked";
+            dockStatusAnimator.SetTrigger("textTrigger");
         }
         else
         {
@@ -145,25 +164,28 @@ public class UI_Manager : MonoBehaviour
             endPanel.SetActive(false);
         }
     }
-    
-    //IEnumerator ShowAnyKey()
-    //{
-    //    yield return new WaitForSecondsRealtime(3);
-    //    anyKey.gameObject.SetActive(true);
-    //}
 
+    float deltaTime;// for better text animation control
     void TimerUpdate()
     {
-        if (doTimer && timerTime > 0.000f)
+        if (doTimer && timerTime > 0)
         {
-            timerTime -= Time.deltaTime;
+            if (deltaTime < 1)
+            {
+                deltaTime += Time.fixedDeltaTime;
+            }
+            else
+            {
+                deltaTime = 1;
+                timerTime -= deltaTime;
+                timerText.text = string.Format("Timer: {0}", timerTime.ToString("000"));
+                if (timerTime % 30 == 0 || timerTime <= 10)
+                {
+                    timerAnimator.SetTrigger("textTrigger");
+                }
+                deltaTime = 0;
+            }
         }
-        else if(timerTime <= 0.000f)
-        {
-            timerTime = 0;
-            Game_Manager.GameStatus = Game_Manager.GameStatusEnum.Overed;
-        }
-        timerText.text = string.Format("Timer: {0}", timerTime.ToString("000"));
     }
 
     void DisableScoring(Game_Manager.GameStatusEnum status)

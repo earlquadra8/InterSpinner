@@ -396,6 +396,7 @@ GameObject:
   - component: {fileID: 224688044736349328}
   - component: {fileID: 222417769556457462}
   - component: {fileID: 114270782467805900}
+  - component: {fileID: 95304605217427764}
   m_Layer: 5
   m_Name: DockStatus
   m_TagString: Untagged
@@ -977,6 +978,7 @@ GameObject:
   - component: {fileID: 224558032894538920}
   - component: {fileID: 222232766140437724}
   - component: {fileID: 114740171952700522}
+  - component: {fileID: 95874733023182494}
   m_Layer: 5
   m_Name: Timer
   m_TagString: Untagged
@@ -1068,7 +1070,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1706177610869586
 GameObject:
   m_ObjectHideFlags: 1
@@ -1565,6 +1567,40 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!95 &95304605217427764
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1240584866539968}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8ece89ceb0f25aa4b80810eaf2d8dda4, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+--- !u!95 &95874733023182494
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1629090882276676}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c0d71109f228af44491a81f40cf7e26a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &114002291554958164
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3995,7 +4031,9 @@ MonoBehaviour:
   angularMeter: {fileID: 114049686827180010}
   driftMeter: {fileID: 114234672845346146}
   fuelMeter: {fileID: 114348885215853616}
+  dockStatusAnimator: {fileID: 95304605217427764}
   dockStatus: {fileID: 114270782467805900}
+  timerAnimator: {fileID: 95874733023182494}
   doTimer: 0
   timerTime: 0
   timerText: {fileID: 114740171952700522}
