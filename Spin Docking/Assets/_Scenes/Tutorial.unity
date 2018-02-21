@@ -2956,6 +2956,11 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114880561450417458, guid: 953bcb45ef38cb2488654126568029af,
+        type: 2}
+      propertyPath: nextDockIDAnimator
+      value: 
+      objectReference: {fileID: 1896846739}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 953bcb45ef38cb2488654126568029af, type: 2}
   m_IsPrefabParent: 0
@@ -3396,6 +3401,28 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1893714340}
+--- !u!1 &1896846738 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1605554054684730, guid: 953bcb45ef38cb2488654126568029af,
+    type: 2}
+  m_PrefabInternal: {fileID: 1635673945}
+--- !u!95 &1896846739
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1896846738}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 5bad4de67ab176142b009d1a03dfd87a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1 &1928534840
 GameObject:
   m_ObjectHideFlags: 0

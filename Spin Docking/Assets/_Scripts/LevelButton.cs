@@ -34,6 +34,7 @@ public class LevelButton : MonoBehaviour
     void EnableStars()
     {
         int starCount = PlayerPrefs.GetInt(("level" + levelNum + "StarCount"), 0);
+        print("starCount: " + gameObject.name + " " + starCount);
         if (starCount <= starParent.transform.childCount)
         {
             for (int i = 0; i < starCount; i++)

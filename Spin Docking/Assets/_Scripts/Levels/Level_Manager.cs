@@ -28,13 +28,14 @@ public class Level_Manager : MonoBehaviour
     }
     private void OnDisable()
     {
-        SaveStars();
+        //SaveStars();
     }
-    void SaveStars()
+    public void SaveStars()
     {
         if (UI_Manager.Instance.StarCount > PlayerPrefs.GetInt(("level" + levelNum + "StarCount"), 0))
         {
             PlayerPrefs.SetInt(("level" + levelNum + "StarCount"), UI_Manager.Instance.StarCount);
+            print("saved "+ UI_Manager.Instance.StarCount);
         }
     }
 }

@@ -277,10 +277,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 1087571130472198, guid: 240ba02aea860504f9111f1804b8bcb2, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 240ba02aea860504f9111f1804b8bcb2, type: 2}
   m_IsPrefabParent: 0
@@ -418,10 +414,6 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4424560321333692, guid: e7f8dbb13fa62244a8ad915bd6d2891f, type: 2}
       propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1383950742464310, guid: e7f8dbb13fa62244a8ad915bd6d2891f, type: 2}
-      propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -705,7 +697,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelNum: 2
   levelDoTimer: 1
-  levelTime: 180
+  levelTime: 200
   levelMaxFuel: 2500
   levelDoScore: 1
   levelThreeStarScore: 531

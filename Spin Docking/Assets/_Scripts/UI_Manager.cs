@@ -50,8 +50,7 @@ public class UI_Manager : MonoBehaviour
     {
         Game_Manager.NextDockIDGenerated += UpdateNextDockText;
         Game_Manager.GameStatusChanged += ToggleGuide;
-        Game_Manager.GameStatusChanged += ToggleEndPanel;
-        Game_Manager.GameStatusChanged += DisableScoring;
+        Game_Manager.GameStatusChanged += OnGameOvered;
         Dock_DockBase.busDockingStatusUpdated += UpdateDockStatusText;
         Dock_DockBase.busDockingStatusUpdated += Scoring;
     }
@@ -59,12 +58,21 @@ public class UI_Manager : MonoBehaviour
     {
         Game_Manager.NextDockIDGenerated -= UpdateNextDockText;
         Game_Manager.GameStatusChanged -= ToggleGuide;
-        Game_Manager.GameStatusChanged -= ToggleEndPanel;
-        Game_Manager.GameStatusChanged -= DisableScoring;
+        Game_Manager.GameStatusChanged -= OnGameOvered;
         Dock_DockBase.busDockingStatusUpdated -= UpdateDockStatusText;
         Dock_DockBase.busDockingStatusUpdated -= Scoring;
     }
     #endregion OnEnable & OnDisable
+    void OnGameOvered(Game_Manager.GameStatusEnum status)
+    {
+        if (status == Game_Manager.GameStatusEnum.Overed)
+        {
+            ToggleEndPanel();
+            DisableScoring();
+            EnableStars();
+        }
+    }
+
     void Start ()
     {
         _bus = FindObjectOfType<Bus>();//GameObject.FindGameObjectsWithTag("Player")[0].GetComponent<Bus>();
@@ -142,19 +150,16 @@ public class UI_Manager : MonoBehaviour
             }
         }
     }
-    void ToggleEndPanel(Game_Manager.GameStatusEnum status)
+    void ToggleEndPanel()
     {
-        if (status == Game_Manager.GameStatusEnum.Overed)
+        if (!endPanel.activeSelf)
         {
-            if (!endPanel.activeSelf)
-            {
-                endPanel.SetActive(true);
-            }
-            if (!Cursor.visible)
-            {
-                Cursor.visible = true;
-                Cursor.lockState = CursorLockMode.None;
-            }
+            endPanel.SetActive(true);
+        }
+        if (!Cursor.visible)
+        {
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
         }
     }
     public void EndPanelCrossButton()
@@ -186,14 +191,18 @@ public class UI_Manager : MonoBehaviour
                 deltaTime = 0;
             }
         }
+        else if (timerTime <= 0)
+        {
+            if (Game_Manager.GameStatus != Game_Manager.GameStatusEnum.Overed)
+            {
+                Game_Manager.GameStatus = Game_Manager.GameStatusEnum.Overed;
+            }
+        }
     }
 
-    void DisableScoring(Game_Manager.GameStatusEnum status)
+    void DisableScoring()
     {
-        if (status == Game_Manager.GameStatusEnum.Overed)
-        {
-            doScore = false;
-        }
+        doScore = false;
     }
 
     void Scoring(bool isCorrectlyDocked)
@@ -209,7 +218,6 @@ public class UI_Manager : MonoBehaviour
     {
         scoreBoard.text = string.Format("Score: {0}", score.ToString("0000"));
         endScore.text = string.Format("Your Score: {0}", score.ToString("0000"));
-        EnableStars();
     }
 
     void EnableStars()
@@ -224,6 +232,18 @@ public class UI_Manager : MonoBehaviour
                 starsParent.transform.GetChild(i).gameObject.SetActive(true);
                 _starCount++;
             }
+            else
+            {
+                break;
+            }
         }
+        Level_Manager.Instance.SaveStars();
     }
+    //void SaveStars()
+    //{
+    //    if (_starCount > PlayerPrefs.GetInt(("level" + Level_Manager.Instance.levelNum + "StarCount"), 0))
+    //    {
+    //        PlayerPrefs.SetInt(("level" + Level_Manager.Instance.levelNum + "StarCount"), _starCount);
+    //    }
+    //}
 }
