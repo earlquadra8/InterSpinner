@@ -38,6 +38,7 @@ public class Dock_DockBase : MonoBehaviour
             angularText.text = "Angular Speed:\n" + stationDish.GetComponent<Station>().WorldAngularVelocity.magnitude.ToString("00.0");
         }
     }
+
     private void OnTriggerStay(Collider other)
     {
         if (other.tag == "Player")
@@ -47,19 +48,20 @@ public class Dock_DockBase : MonoBehaviour
             {
                 bus.CanControlSpin = false;
                 bus.SetWorldAngularVelocity = stationDish.GetComponent<Station>().WorldAngularVelocity;
-                _isDocked = true;
                 if (busDockingStatusUpdated != null && Game_Manager.NextDockID == dockID)// check if in the right dock
                 {
+                    _isDocked = true;
                     busDockingStatusUpdated(_isDocked);
                     bus.CurrentFuel = bus.MaxFuel;
                 }
             }
-            else
+            else if(_isDocked && !CheckIfAllSensorsConnected())
             {
-                bus.CanControlSpin = true;
                 _isDocked = false;
+                bus.CanControlSpin = true;
                 if (busDockingStatusUpdated != null)
                 {
+                    print("busDockingStatusUpdated");
                     busDockingStatusUpdated(_isDocked);
                 }
             }
@@ -69,10 +71,11 @@ public class Dock_DockBase : MonoBehaviour
     //{
     //    if (other.tag == "Player")
     //    {
-    //        other.GetComponent<Bus>().CanControlSpin = true;
+    //        Bus bus = other.GetComponent<Bus>();
+    //        bus.CanControlSpin = true;
+    //        _isDocked = false;
     //        if (busDockingStatusUpdated != null)
     //        {
-    //            _isDocked = false;
     //            busDockingStatusUpdated(_isDocked);
     //        }
     //    }
