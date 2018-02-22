@@ -2683,6 +2683,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114155045791226868, guid: 4b81453f8039b75418f356cb37946f12,
+        type: 2}
+      propertyPath: _setAngularVelocityY
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4b81453f8039b75418f356cb37946f12, type: 2}
   m_IsPrefabParent: 0

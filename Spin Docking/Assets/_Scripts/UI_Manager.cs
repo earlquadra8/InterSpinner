@@ -63,15 +63,6 @@ public class UI_Manager : MonoBehaviour
         Dock_DockBase.busDockingStatusUpdated -= Scoring;
     }
     #endregion OnEnable & OnDisable
-    void OnGameOvered(Game_Manager.GameStatusEnum status)
-    {
-        if (status == Game_Manager.GameStatusEnum.Overed)
-        {
-            ToggleEndPanel();
-            DisableScoring();
-            EnableStars();
-        }
-    }
 
     void Start ()
     {
@@ -97,6 +88,16 @@ public class UI_Manager : MonoBehaviour
     private void FixedUpdate()
     {
         TimerUpdate();
+    }
+
+    void OnGameOvered(Game_Manager.GameStatusEnum status)
+    {
+        if (status == Game_Manager.GameStatusEnum.Overed)
+        {
+            ToggleEndPanel();
+            DisableScoring();
+            EnableStars();
+        }
     }
 
     void UpdateMeters()

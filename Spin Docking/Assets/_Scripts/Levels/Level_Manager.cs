@@ -15,6 +15,8 @@ public class Level_Manager : MonoBehaviour
     public bool levelDoScore;
     public float levelThreeStarScore;
 
+    public bool dontSave = false;
+
     private void Awake()
     {
         _instance = this;
@@ -26,16 +28,17 @@ public class Level_Manager : MonoBehaviour
             levelNum = SceneManager.GetActiveScene().buildIndex;
         }
     }
-    private void OnDisable()
-    {
-        //SaveStars();
-    }
+    bool isSaved;
     public void SaveStars()
     {
-        if (UI_Manager.Instance.StarCount > PlayerPrefs.GetInt(("level" + levelNum + "StarCount"), 0))
+        if (!isSaved && !dontSave)
         {
-            PlayerPrefs.SetInt(("level" + levelNum + "StarCount"), UI_Manager.Instance.StarCount);
-            print("saved "+ UI_Manager.Instance.StarCount);
+            isSaved = true;
+            if (UI_Manager.Instance.StarCount > PlayerPrefs.GetInt(("level" + levelNum + "StarCount"), 0))
+            {
+                PlayerPrefs.SetInt(("level" + levelNum + "StarCount"), UI_Manager.Instance.StarCount);
+                print("saved " + UI_Manager.Instance.StarCount);
+            }
         }
     }
 }

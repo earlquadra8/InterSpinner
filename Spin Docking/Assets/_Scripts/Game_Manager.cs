@@ -61,15 +61,23 @@ public class Game_Manager : MonoBehaviour
         _instance = this;
     }
     #region OnEnable and OnDisable
+
+    void printgamestatus(GameStatusEnum status)
+    {
+        print(status);
+    }
+
     private void OnEnable()
     {
         Dock_DockBase.busDockingStatusUpdated += GenerateNextDockID;
+        GameStatusChanged += printgamestatus;
 
         _gameStatus = GameStatusEnum.Started;
     }
     private void OnDisable()
     {
         Dock_DockBase.busDockingStatusUpdated -= GenerateNextDockID;
+        GameStatusChanged -= printgamestatus;
 
         if (Time.timeScale == 0)
         {
@@ -118,10 +126,13 @@ public class Game_Manager : MonoBehaviour
         if (Time.timeScale == 1)
         {
             Time.timeScale = 0;
-            _gameStatus = GameStatusEnum.Paused;
+            if (_gameStatus != GameStatusEnum.Overed)
+            {
+                _gameStatus = GameStatusEnum.Paused;
+            }
             if (GameStatusChanged != null)
             {
-                GameStatusChanged(_gameStatus);
+                GameStatusChanged(GameStatusEnum.Paused);
             }
             if (!Cursor.visible)
             {
@@ -132,10 +143,13 @@ public class Game_Manager : MonoBehaviour
         else if (Time.timeScale == 0)
         {
             Time.timeScale = 1;
-            _gameStatus = GameStatusEnum.Resumed;
+            if (_gameStatus != GameStatusEnum.Overed)
+            {
+                _gameStatus = GameStatusEnum.Resumed;
+            }
             if (GameStatusChanged != null)
             {
-                GameStatusChanged(_gameStatus);
+                GameStatusChanged(GameStatusEnum.Resumed);
             }
             if (Cursor.visible)
             {

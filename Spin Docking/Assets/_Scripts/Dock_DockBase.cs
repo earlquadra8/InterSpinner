@@ -55,50 +55,49 @@ public class Dock_DockBase : MonoBehaviour
                     bus.CurrentFuel = bus.MaxFuel;
                 }
             }
-            else if(_isDocked && !CheckIfAllSensorsConnected())
+            else
             {
-                _isDocked = false;
+                if (_isDocked)
+                {
+                    bus.CanControlSpin = true;
+                    _isDocked = false;
+                    if (busDockingStatusUpdated != null)
+                    {
+                        busDockingStatusUpdated(_isDocked);
+                    }
+                }
+            }
+        }
+    }
+    private void OnTriggerExit(Collider other)// in rare case, the else if in OnTriggerStay is not called for unknown reason, it would duct tape it.
+    {
+        if (other.tag == "Player")
+        {
+            if (_isDocked && !CheckIfAllSensorsConnected())
+            {
+                Bus bus = other.GetComponent<Bus>();
                 bus.CanControlSpin = true;
+                _isDocked = false;
                 if (busDockingStatusUpdated != null)
                 {
-                    print("busDockingStatusUpdated");
                     busDockingStatusUpdated(_isDocked);
                 }
             }
         }
     }
-    //private void OnTriggerExit(Collider other)
-    //{
-    //    if (other.tag == "Player")
-    //    {
-    //        Bus bus = other.GetComponent<Bus>();
-    //        bus.CanControlSpin = true;
-    //        _isDocked = false;
-    //        if (busDockingStatusUpdated != null)
-    //        {
-    //            busDockingStatusUpdated(_isDocked);
-    //        }
-    //    }
-    //}
 
     bool CheckIfAllSensorsConnected()
     {
-        bool isAllSensorsConnected = false;
         foreach (GameObject sensor in sensors)
         {
             if (sensor.GetComponent<Dock_Sensors>() != null)
             {
-                if (sensor.GetComponent<Dock_Sensors>().IsConnected)
+                if (!sensor.GetComponent<Dock_Sensors>().IsConnected)
                 {
-                    isAllSensorsConnected = sensor.GetComponent<Dock_Sensors>().IsConnected;
-                }
-                else
-                {
-                    isAllSensorsConnected = sensor.GetComponent<Dock_Sensors>().IsConnected;
-                    break;
+                    return false;
                 }
             }
         }
-        return isAllSensorsConnected;
+        return true;
     }
 }
