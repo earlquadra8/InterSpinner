@@ -22,19 +22,19 @@ public class CameraScript : MonoBehaviour
     }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            if (!Cursor.visible)
-            {
-                Cursor.visible = true;
-                Cursor.lockState = CursorLockMode.None;
-            }
-            else
-            {
-                Cursor.visible = false;
-                Cursor.lockState = CursorLockMode.Locked;
-            }
-        }
+        //if (Input.GetKeyDown(KeyCode.Escape))
+        //{
+        //    if (!Cursor.visible)
+        //    {
+        //        Cursor.visible = true;
+        //        Cursor.lockState = CursorLockMode.None;
+        //    }
+        //    else
+        //    {
+        //        Cursor.visible = false;
+        //        Cursor.lockState = CursorLockMode.Locked;
+        //    }
+        //}
     }
     void FixedUpdate ()
     {

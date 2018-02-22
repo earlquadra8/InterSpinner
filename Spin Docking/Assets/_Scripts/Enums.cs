@@ -15,7 +15,8 @@ public enum InputKeyName
     Pitch,
     Yaw,
     Roll,
-    FullBrake
+    FullBrake,
+    Pause,
 }
 
 public enum PosNeg

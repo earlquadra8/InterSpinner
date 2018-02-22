@@ -910,6 +910,7 @@ GameObject:
   - component: {fileID: 224351539779996100}
   - component: {fileID: 222545798338037946}
   - component: {fileID: 114426443314445820}
+  - component: {fileID: 95642798506606228}
   m_Layer: 5
   m_Name: NextDockID
   m_TagString: Untagged
@@ -1577,6 +1578,23 @@ Animator:
   m_Enabled: 1
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 8ece89ceb0f25aa4b80810eaf2d8dda4, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+--- !u!95 &95642798506606228
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1605554054684730}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 5bad4de67ab176142b009d1a03dfd87a, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -3961,7 +3979,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Press P to Pause
+  m_Text: Press ESC or P to Pause & Show Guide
 --- !u!114 &114860887114656396
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4027,6 +4045,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b60a1ac8f4f962b4d9da96534cdc5962, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nextDockIDAnimator: {fileID: 95642798506606228}
   nextDockID: {fileID: 114426443314445820}
   angularMeter: {fileID: 114049686827180010}
   driftMeter: {fileID: 114234672845346146}
@@ -5306,7 +5325,7 @@ RectTransform:
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 125, y: 25}
+  m_SizeDelta: {x: 275, y: 25}
   m_Pivot: {x: 1, y: 0}
 --- !u!224 &224145459343272124
 RectTransform:
@@ -5763,7 +5782,7 @@ RectTransform:
   m_Father: {fileID: 224139900658520252}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.25, y: 0}
+  m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: -2.5, y: 0}
   m_SizeDelta: {x: -5, y: 0}

@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Bus : MonoBehaviour
 {
+    public delegate void busFuelState();
+    public event busFuelState busFuelEmptied;
+
     [SerializeField]
     float _thrustForce;
     [SerializeField]
@@ -114,7 +117,6 @@ public class Bus : MonoBehaviour
         _activeThruster = new bool[_thrusterParticle.Length];
         
     }
-	
 	void FixedUpdate ()
     {
         Movement();
@@ -203,6 +205,15 @@ public class Bus : MonoBehaviour
         else
         {
             _currentFuel = 0.000f;
+            busFuelEmptiedEvent();
+        }
+    }
+    bool fuelEmptiedEventRaised = false;
+    void busFuelEmptiedEvent()
+    {
+        if (!fuelEmptiedEventRaised && busFuelEmptied != null)
+        {
+            busFuelEmptied();
         }
     }
 

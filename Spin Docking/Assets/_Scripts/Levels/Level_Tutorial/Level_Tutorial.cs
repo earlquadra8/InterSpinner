@@ -17,11 +17,14 @@ public class Level_Tutorial : MonoBehaviour
     public GameObject pressKey;
     public GameObject UI;
     public GameObject gamePlay;
-    public GameObject pressNKey;
+    public GameObject pressNKey;// The Tab key
+    public GameObject refillKey;
 
     GameObject[] _pressKeyTutorialChilds;
     GameObject[] _uiTutorialChilds;
     GameObject[] _gamePlayTutorialChilds;
+
+    Bus _bus;
 
     public enum TutorialStage : int
     {
@@ -37,14 +40,17 @@ public class Level_Tutorial : MonoBehaviour
     }
     private void OnEnable()
     {
+        _bus = FindObjectOfType<Bus>();
+
+        _bus.busFuelEmptied += OnbusFuelEmptied;
         TutorialItemMovedOn += EnableTutorialItems;
         Dock_DockBase.busDockingStatusUpdated += OnBusDocked;
     }
     private void OnDisable()
     {
+        _bus.busFuelEmptied -= OnbusFuelEmptied;
         TutorialItemMovedOn -= EnableTutorialItems;
         Dock_DockBase.busDockingStatusUpdated -= OnBusDocked;
-
     }
     private void Start()
     {
@@ -56,23 +62,26 @@ public class Level_Tutorial : MonoBehaviour
         AddToArray(pressKey, _pressKeyTutorialChilds);
         AddToArray(UI, _uiTutorialChilds);
         AddToArray(gamePlay, _gamePlayTutorialChilds);
-        
+
         EnableTutorialItems();
     }
 
     private void Update()
     {
         CheckTutorialConditions();
+        RefillFuel();
     }
-    void TogglePauseGame()
+
+    void OnbusFuelEmptied()
     {
-        if (Time.timeScale == 1)
+        refillKey.SetActive(true);
+    }
+    void RefillFuel()
+    {
+        if (Input.GetKeyDown(KeyCode.T))
         {
-            Time.timeScale = 0;
-        }
-        else if (Time.timeScale == 0)
-        {
-            Time.timeScale = 1;
+            refillKey.SetActive(false);
+            _bus.CurrentFuel = _bus.MaxFuel;
         }
     }
 
@@ -156,21 +165,21 @@ public class Level_Tutorial : MonoBehaviour
         {
             if (tutorialItemIndex >= 1)
             {
-                if (GetTutorialArray()[tutorialItemIndex -1].GetComponent<PressKey>().sign == PosNeg.Positve)
+                if (GetTutorialArray()[tutorialItemIndex -1].GetComponent<PressKey>().sign == PosNeg.Positve)// Positive input axis
                 {
                     if (Input.GetAxisRaw(GetTutorialArray()[tutorialItemIndex - 1].GetComponent<PressKey>().pressKey.ToString()) > 0)
                     {
                         TriggerTutorialItemMovedOnEvent();
                     }
                 }
-                else if (GetTutorialArray()[tutorialItemIndex - 1].GetComponent<PressKey>().sign == PosNeg.Negative)
+                else if (GetTutorialArray()[tutorialItemIndex - 1].GetComponent<PressKey>().sign == PosNeg.Negative)// Negative input axis
                 {
                     if (Input.GetAxisRaw(GetTutorialArray()[tutorialItemIndex - 1].GetComponent<PressKey>().pressKey.ToString()) < 0)
                     {
                         TriggerTutorialItemMovedOnEvent();
                     }
                 }
-                else if (GetTutorialArray()[tutorialItemIndex - 1].GetComponent<PressKey>().sign == PosNeg.None)
+                else if (GetTutorialArray()[tutorialItemIndex - 1].GetComponent<PressKey>().sign == PosNeg.None)// No input axis
                 {
                     if (Input.GetAxisRaw(GetTutorialArray()[tutorialItemIndex - 1].GetComponent<PressKey>().pressKey.ToString()) != 0)
                     {
