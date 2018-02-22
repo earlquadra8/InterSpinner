@@ -277,43 +277,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 114416182545227972, guid: 240ba02aea860504f9111f1804b8bcb2,
-        type: 2}
-      propertyPath: _setAngularVelocityY
-      value: 2.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 4631184539917142, guid: 240ba02aea860504f9111f1804b8bcb2, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4631184539917142, guid: 240ba02aea860504f9111f1804b8bcb2, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4631184539917142, guid: 240ba02aea860504f9111f1804b8bcb2, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4631184539917142, guid: 240ba02aea860504f9111f1804b8bcb2, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4631184539917142, guid: 240ba02aea860504f9111f1804b8bcb2, type: 2}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 180
-      objectReference: {fileID: 0}
-    - target: {fileID: 4631184539917142, guid: 240ba02aea860504f9111f1804b8bcb2, type: 2}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4631184539917142, guid: 240ba02aea860504f9111f1804b8bcb2, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 1087571130472198, guid: 240ba02aea860504f9111f1804b8bcb2, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 240ba02aea860504f9111f1804b8bcb2, type: 2}
   m_IsPrefabParent: 0
@@ -355,19 +318,6 @@ Prefab:
     - target: {fileID: 4088952497446708, guid: bd97c8b5da93ee94fa76a4988aae8880, type: 2}
       propertyPath: m_RootOrder
       value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 114288899977514514, guid: bd97c8b5da93ee94fa76a4988aae8880,
-        type: 2}
-      propertyPath: _maxFuel
-      value: 2000
-      objectReference: {fileID: 0}
-    - target: {fileID: 1400543461588386, guid: bd97c8b5da93ee94fa76a4988aae8880, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1069355903599282, guid: bd97c8b5da93ee94fa76a4988aae8880, type: 2}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bd97c8b5da93ee94fa76a4988aae8880, type: 2}
@@ -451,15 +401,6 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4424560321333692, guid: e7f8dbb13fa62244a8ad915bd6d2891f, type: 2}
       propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114589294679345840, guid: e7f8dbb13fa62244a8ad915bd6d2891f,
-        type: 2}
-      propertyPath: _setAngularVelocityY
-      value: -3.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1383950742464310, guid: e7f8dbb13fa62244a8ad915bd6d2891f, type: 2}
-      propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -747,3 +688,4 @@ MonoBehaviour:
   levelMaxFuel: 2500
   levelDoScore: 1
   levelThreeStarScore: 600
+  dontSave: 0

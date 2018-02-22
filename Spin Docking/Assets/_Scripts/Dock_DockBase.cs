@@ -51,7 +51,10 @@ public class Dock_DockBase : MonoBehaviour
                 if (busDockingStatusUpdated != null && Game_Manager.NextDockID == dockID)// check if in the right dock
                 {
                     _isDocked = true;
-                    busDockingStatusUpdated(_isDocked);
+                    if (busDockingStatusUpdated != null)
+                    {
+                        busDockingStatusUpdated(_isDocked);
+                    }
                     bus.CurrentFuel = bus.MaxFuel;
                 }
             }
@@ -73,10 +76,14 @@ public class Dock_DockBase : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            if (_isDocked && !CheckIfAllSensorsConnected())
+            print("_isDocked " + _isDocked + " | CanControlSpin " + other.GetComponent<Bus>().CanControlSpin);
+            if (!other.GetComponent<Bus>().CanControlSpin)
             {
-                Bus bus = other.GetComponent<Bus>();
-                bus.CanControlSpin = true;
+                other.GetComponent<Bus>().CanControlSpin = true;
+            }
+
+            if(_isDocked)
+            { 
                 _isDocked = false;
                 if (busDockingStatusUpdated != null)
                 {

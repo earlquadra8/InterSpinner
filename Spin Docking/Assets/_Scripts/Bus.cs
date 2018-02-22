@@ -211,7 +211,6 @@ public class Bus : MonoBehaviour
     {
         if (Input.GetButton("FullBrake") && _canControlSpin && _currentFuel > 0 && (_rb.velocity != Vector3.zero || _rb.angularVelocity != Vector3.zero))
         {
-            print("FullBrake");
             isFullBrakeing = true;
             if (_rb.velocity.magnitude >= _fullBrakeDriftThreshold)
             {
