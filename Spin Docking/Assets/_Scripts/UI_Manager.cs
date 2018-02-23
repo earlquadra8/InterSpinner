@@ -66,7 +66,9 @@ public class UI_Manager : MonoBehaviour
 
     void Start ()
     {
-        Utilities.ToggleCursor();
+        //Utilities.ToggleCursor();
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
 
         _bus = FindObjectOfType<Bus>();//GameObject.FindGameObjectsWithTag("Player")[0].GetComponent<Bus>();
 
@@ -90,6 +92,10 @@ public class UI_Manager : MonoBehaviour
     private void Update ()
     {
         UpdateMeters();
+        if (!endPanel.activeSelf && !pausePanel.activeSelf)
+        {
+            Utilities.LockCursor();
+        }
     }
     private void OnApplicationFocus(bool focus)
     {
@@ -132,7 +138,6 @@ public class UI_Manager : MonoBehaviour
         nextDockID.text = "Going to Dock " + Game_Manager.NextDockID.ToString("00");
         nextDockIDAnimator.SetTrigger("textTrigger");
     }
-
     void UpdateDockStatusText(bool isDocked)
     {
         if (isDocked)
@@ -252,5 +257,4 @@ public class UI_Manager : MonoBehaviour
         Level_Manager.Instance.SaveStars();
     }
 
-    
 }

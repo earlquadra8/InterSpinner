@@ -556,7 +556,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1344728096759880
 GameObject:
   m_ObjectHideFlags: 1
@@ -621,6 +621,7 @@ GameObject:
   - component: {fileID: 114139386230622776}
   - component: {fileID: 114880561450417458}
   - component: {fileID: 114028796474749764}
+  - component: {fileID: 114696180785511256}
   m_Layer: 5
   m_Name: Canvas_Main
   m_TagString: Untagged
@@ -1276,7 +1277,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1803886807588008
 GameObject:
   m_ObjectHideFlags: 1
@@ -3564,6 +3565,24 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114696180785511256
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1380591398027246}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fdabb2475b099d6489b85113dfddcaca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  plaformTexts:
+  - targetText: {fileID: 114839388563866804}
+    Standalone: Press ESC or P to Pause & Show Guide
+    WebGL: Press P to Pause & Show Guide
+  - targetText: {fileID: 114543066385611676}
+    Standalone: Press ESC or P to close
+    WebGL: Press P to close
 --- !u!114 &114710449157573184
 MonoBehaviour:
   m_ObjectHideFlags: 1

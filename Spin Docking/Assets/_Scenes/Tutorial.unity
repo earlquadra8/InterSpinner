@@ -7077,6 +7077,7 @@ GameObject:
   - component: {fileID: 1609337106}
   - component: {fileID: 1609337108}
   - component: {fileID: 1609337107}
+  - component: {fileID: 1609337110}
   m_Layer: 5
   m_Name: Canvas_Level_Tutorial
   m_TagString: Untagged
@@ -7164,6 +7165,21 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1609337110
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1609337105}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fdabb2475b099d6489b85113dfddcaca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  plaformTexts:
+  - targetText: {fileID: 419005464}
+    Standalone: Press [ESC] or [P] to\NWPause and show Guide
+    WebGL: Press [P] to\NWPause and show Guide
 --- !u!1 &1616225175
 GameObject:
   m_ObjectHideFlags: 0

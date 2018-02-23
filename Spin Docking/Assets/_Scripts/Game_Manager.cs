@@ -96,10 +96,18 @@ public class Game_Manager : MonoBehaviour
     }
     private void Update()
     {
+#if UNITY_STANDALONE
         if (Input.GetButtonDown("Pause"))
         {
             TogglePauseGame();
         }
+#endif
+#if UNITY_WEBGL
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            TogglePauseGame();
+        }
+#endif
     }
     void GenerateNextDockID(bool isDocked)
     {
@@ -125,7 +133,6 @@ public class Game_Manager : MonoBehaviour
     {
         if (Time.timeScale == 1)
         {
-            Time.timeScale = 0;
             if (_gameStatus != GameStatusEnum.Overed)
             {
                 _gameStatus = GameStatusEnum.Paused;
@@ -134,6 +141,7 @@ public class Game_Manager : MonoBehaviour
             {
                 GameStatusChanged(GameStatusEnum.Paused);
             }
+            Time.timeScale = 0;
         }
         else if (Time.timeScale == 0)
         {

@@ -17,4 +17,18 @@ public class Utilities
             Cursor.lockState = CursorLockMode.None;
         }
     }
+    public static void LockCursor()
+    {
+        if (Input.anyKeyDown)
+        {
+            if (Cursor.lockState != CursorLockMode.Locked)
+            {
+                Cursor.lockState = CursorLockMode.Locked;
+            }
+            if (Cursor.visible)
+            {
+                Cursor.visible = false;
+            }
+        }
+    }
 }
