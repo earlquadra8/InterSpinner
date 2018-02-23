@@ -482,6 +482,7 @@ GameObject:
   - component: {fileID: 224321114016623050}
   - component: {fileID: 222649067463628842}
   - component: {fileID: 114420275313204168}
+  - component: {fileID: 114862795204937328}
   m_Layer: 5
   m_Name: Stars_Parent
   m_TagString: Untagged
@@ -910,7 +911,7 @@ GameObject:
   - component: {fileID: 224351539779996100}
   - component: {fileID: 222545798338037946}
   - component: {fileID: 114426443314445820}
-  - component: {fileID: 95642798506606228}
+  - component: {fileID: 95872193615354872}
   m_Layer: 5
   m_Name: NextDockID
   m_TagString: Untagged
@@ -1585,7 +1586,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!95 &95642798506606228
+--- !u!95 &95872193615354872
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 1
@@ -2118,9 +2119,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Thrusts
-
-'
+  m_Text: Thrusts
 --- !u!114 &114139386230622776
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2541,10 +2540,10 @@ MonoBehaviour:
   m_Script: {fileID: 1980459831, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1600, y: 900}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -3057,7 +3056,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Press P to close
+  m_Text: Press ESC or P to close
 --- !u!114 &114558378583875988
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4034,6 +4033,23 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114862795204937328
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1293761537562970}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3238e9bdc22b2342bd84cdab24db75b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  paddingLeftIn1600to900: 0
+  paddingRightIn1600to900: 0
+  paddingTopIn1600to900: 0
+  paddingBottomIn1600to900: 0
+  sizeIn1600to900: {x: 80, y: 80}
+  spacingIn1600to900: {x: 20, y: 0}
 --- !u!114 &114880561450417458
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4045,7 +4061,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b60a1ac8f4f962b4d9da96534cdc5962, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextDockIDAnimator: {fileID: 95642798506606228}
+  nextDockIDAnimator: {fileID: 95872193615354872}
   nextDockID: {fileID: 114426443314445820}
   angularMeter: {fileID: 114049686827180010}
   driftMeter: {fileID: 114234672845346146}
@@ -6228,7 +6244,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.2367332, y: 0.76600003}
   m_AnchorMax: {x: 0.76326686, y: 1}
-  m_AnchoredPosition: {x: 0.0000038146973, y: 0.000030517578}
+  m_AnchoredPosition: {x: 0.0000038146973, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!224 &224688044736349328
@@ -6304,7 +6320,7 @@ RectTransform:
   m_Father: {fileID: 224252241121989678}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.2352353, y: 0.92486465}
+  m_AnchorMin: {x: 0.2352353, y: 0.9247989}
   m_AnchorMax: {x: 0.80600005, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}

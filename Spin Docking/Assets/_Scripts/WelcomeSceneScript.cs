@@ -10,11 +10,20 @@ public class WelcomeSceneScript : MonoBehaviour
 
     public Text verNum;
     public GameObject sceneSelectPanel;
+    public GridLayoutGroup levelParentGLG;
 
     private void Start()
     {
         sceneSelectPanel.SetActive(false);
         verNum.text = string.Format("Ver: {0}", Application.version);
+        //levelParentGLG.padding.left = (int)(Screen.width * 30 / 1600);
+        //levelParentGLG.padding.top = (int)(Screen.height * 30 / 900);
+        //levelParentGLG.cellSize = new Vector2(Screen.width * 290 / 1600, Screen.height * 200 / 900);
+        //levelParentGLG.spacing = new Vector2(Screen.width * 20 / 1600, Screen.height * 20 / 900);
+    }
+    private void Update()
+    {
+        
     }
     public void ToggleSceneSelection()
     {

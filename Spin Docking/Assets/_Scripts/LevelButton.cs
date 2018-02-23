@@ -10,6 +10,8 @@ public class LevelButton : MonoBehaviour
     public Text levelText;
     public GameObject starParent;
 
+    GridLayoutGroup starParentGLG;
+
     private void OnEnable()
     {
         WelcomeSceneScript.DeletedStars += DisableAllStars;
@@ -22,6 +24,10 @@ public class LevelButton : MonoBehaviour
     }
     private void Start()
     {
+        //starParentGLG = starParent.GetComponent<GridLayoutGroup>();
+        //starParentGLG.cellSize = new Vector2(Screen.width * 65 / 1600, Screen.height * 65 / 900);
+        //starParentGLG.spacing = new Vector2(Screen.width * 15 / 1600, 0);
+
         DisableAllStars();
         ChangeText();
         EnableStars();

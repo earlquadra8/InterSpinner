@@ -93,7 +93,13 @@ public class UI_Manager : MonoBehaviour
     }
     private void OnApplicationFocus(bool focus)
     {
-        Cursor.lockState = CursorLockMode.Locked;
+        if (!focus)
+        {
+            if (Game_Manager.GameStatus != Game_Manager.GameStatusEnum.Paused)
+            {
+                Game_Manager.Instance.TogglePauseGame();
+            }
+        }
     }
 
     void OnGameOvered(Game_Manager.GameStatusEnum status)
