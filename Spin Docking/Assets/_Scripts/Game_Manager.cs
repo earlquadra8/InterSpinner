@@ -134,11 +134,6 @@ public class Game_Manager : MonoBehaviour
             {
                 GameStatusChanged(GameStatusEnum.Paused);
             }
-            if (!Cursor.visible)
-            {
-                Cursor.visible = true;
-                Cursor.lockState = CursorLockMode.None;
-            }
         }
         else if (Time.timeScale == 0)
         {
@@ -150,11 +145,6 @@ public class Game_Manager : MonoBehaviour
             if (GameStatusChanged != null)
             {
                 GameStatusChanged(GameStatusEnum.Resumed);
-            }
-            if (Cursor.visible)
-            {
-                Cursor.visible = false;
-                Cursor.lockState = CursorLockMode.Locked;
             }
         }
     }

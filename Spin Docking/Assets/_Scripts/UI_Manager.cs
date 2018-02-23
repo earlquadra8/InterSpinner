@@ -66,6 +66,8 @@ public class UI_Manager : MonoBehaviour
 
     void Start ()
     {
+        Utilities.ToggleCursor();
+
         _bus = FindObjectOfType<Bus>();//GameObject.FindGameObjectsWithTag("Player")[0].GetComponent<Bus>();
 
         _levelManager = FindObjectOfType<Level_Manager>();//GameObject.Find("Level_Manager").GetComponent<Level_Manager>();
@@ -81,13 +83,17 @@ public class UI_Manager : MonoBehaviour
         UpdateScoreBoard();
     }
 
-    void Update ()
-    {
-        UpdateMeters();
-    }
     private void FixedUpdate()
     {
         TimerUpdate();
+    }
+    private void Update ()
+    {
+        UpdateMeters();
+    }
+    private void OnApplicationFocus(bool focus)
+    {
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     void OnGameOvered(Game_Manager.GameStatusEnum status)
@@ -142,6 +148,7 @@ public class UI_Manager : MonoBehaviour
             {
                 pausePanel.SetActive(true);
             }
+            Utilities.ToggleCursor();
         }
         else if (status == Game_Manager.GameStatusEnum.Resumed)
         {
@@ -149,6 +156,7 @@ public class UI_Manager : MonoBehaviour
             {
                 pausePanel.SetActive(false);
             }
+            Utilities.ToggleCursor();
         }
     }
     void ToggleEndPanel()
@@ -157,11 +165,7 @@ public class UI_Manager : MonoBehaviour
         {
             endPanel.SetActive(true);
         }
-        if (!Cursor.visible)
-        {
-            Cursor.visible = true;
-            Cursor.lockState = CursorLockMode.None;
-        }
+        Utilities.ToggleCursor();
     }
     public void EndPanelCrossButton()
     {
@@ -169,6 +173,7 @@ public class UI_Manager : MonoBehaviour
         {
             endPanel.SetActive(false);
         }
+        Utilities.ToggleCursor();
     }
 
     float deltaTime;// for better text animation control
@@ -240,11 +245,6 @@ public class UI_Manager : MonoBehaviour
         }
         Level_Manager.Instance.SaveStars();
     }
-    //void SaveStars()
-    //{
-    //    if (_starCount > PlayerPrefs.GetInt(("level" + Level_Manager.Instance.levelNum + "StarCount"), 0))
-    //    {
-    //        PlayerPrefs.SetInt(("level" + Level_Manager.Instance.levelNum + "StarCount"), _starCount);
-    //    }
-    //}
+
+    
 }

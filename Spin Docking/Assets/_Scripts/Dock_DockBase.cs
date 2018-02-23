@@ -60,9 +60,12 @@ public class Dock_DockBase : MonoBehaviour
             }
             else
             {
-                if (_isDocked)
+                if (!bus.CanControlSpin)
                 {
                     bus.CanControlSpin = true;
+                }
+                if (_isDocked)
+                {
                     _isDocked = false;
                     if (busDockingStatusUpdated != null)
                     {

@@ -17,8 +17,6 @@ public class CameraScript : MonoBehaviour
 	void Start ()
     {
         target = GameObject.FindGameObjectsWithTag("Player")[0];
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
     }
     private void Update()
     {
