@@ -34,6 +34,7 @@ public class UI_Manager : MonoBehaviour
     public Text endScore;
     public GameObject starsParent;
     public float threeStarScore;
+    public bool onlyOneStar;
 
     int _starCount;
     Level_Manager _levelManager;
@@ -250,6 +251,11 @@ public class UI_Manager : MonoBehaviour
                 _starCount++;
             }
             else
+            {
+                break;
+            }
+
+            if (onlyOneStar)
             {
                 break;
             }

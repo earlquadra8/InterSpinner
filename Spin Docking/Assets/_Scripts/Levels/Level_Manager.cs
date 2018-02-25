@@ -15,7 +15,7 @@ public class Level_Manager : MonoBehaviour
     public bool levelDoScore;
     public float levelThreeStarScore;
 
-    public bool dontSave = false;
+    public bool dontSave;
 
     private void Awake()
     {
@@ -28,7 +28,7 @@ public class Level_Manager : MonoBehaviour
             levelNum = SceneManager.GetActiveScene().buildIndex;
         }
     }
-    bool isSaved;
+    bool isSaved; // make sure it just do it once.
     public void SaveStars()
     {
         if (!isSaved && !dontSave)
