@@ -27,8 +27,17 @@ public class Game_Manager : MonoBehaviour
     private static int _nextDockID = -1;
 
     public bool enableGuideOnStart = false;
+    public float maxDistance;
+    public float maxDistanceBuffer;
+    public float outOfBoundDrag;
+    public float backToBoundStep;
 
     public GameObject stationHolder;
+
+    Bus _bus;
+    Vector3 _boundaryPosition;
+
+    float _busPreviousDrag;
 
     #region prop
     public static int NextDockID { get { return _nextDockID; } }
@@ -87,12 +96,19 @@ public class Game_Manager : MonoBehaviour
     #endregion OnEnable and OnDisable
     private void Start()
     {
+        _bus = FindObjectOfType<Bus>();
+        _busPreviousDrag = _bus.gameObject.GetComponent<Rigidbody>().drag;
+
         if (enableGuideOnStart)
         {
             TogglePauseGame();
         }
 
         GenerateNextDockID(true);
+    }
+    private void FixedUpdate()
+    {
+        OutOfBoundaryBehaviour();
     }
     private void Update()
     {
@@ -155,5 +171,23 @@ public class Game_Manager : MonoBehaviour
                 GameStatusChanged(GameStatusEnum.Resumed);
             }
         }
+    }
+
+    void OutOfBoundaryBehaviour()
+    {
+        if (_bus.transform.position.magnitude >= maxDistance && _bus.transform.position.magnitude < maxDistance + maxDistanceBuffer)
+        {
+            _boundaryPosition = _bus.transform.position;
+        }
+        else if (_bus.transform.position.magnitude >= maxDistance + maxDistanceBuffer)
+        {
+            _bus.transform.position = Vector3.MoveTowards(_bus.transform.position, _boundaryPosition, backToBoundStep);
+            _bus.gameObject.GetComponent<Rigidbody>().drag = outOfBoundDrag;
+        }
+        else if (_bus.transform.position.magnitude < maxDistance)
+        {
+            _bus.gameObject.GetComponent<Rigidbody>().drag = _busPreviousDrag;
+        }
+
     }
 }
