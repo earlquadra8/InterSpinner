@@ -415,7 +415,7 @@ GameObject:
   - component: {fileID: 222594048483043770}
   - component: {fileID: 114427785250692010}
   m_Layer: 5
-  m_Name: EnableCursorText
+  m_Name: SandBoxText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -551,12 +551,12 @@ GameObject:
   - component: {fileID: 222688488257347924}
   - component: {fileID: 114025111864643454}
   m_Layer: 5
-  m_Name: EnableCursor_BG
+  m_Name: SandBox_BG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1344728096759880
 GameObject:
   m_ObjectHideFlags: 1
@@ -911,7 +911,7 @@ GameObject:
   - component: {fileID: 224351539779996100}
   - component: {fileID: 222545798338037946}
   - component: {fileID: 114426443314445820}
-  - component: {fileID: 95198327916103202}
+  - component: {fileID: 95698459720074086}
   m_Layer: 5
   m_Name: NextDockID
   m_TagString: Untagged
@@ -1569,23 +1569,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!95 &95198327916103202
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1605554054684730}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 5bad4de67ab176142b009d1a03dfd87a, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
 --- !u!95 &95304605217427764
 Animator:
   serializedVersion: 3
@@ -1596,6 +1579,23 @@ Animator:
   m_Enabled: 1
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 8ece89ceb0f25aa4b80810eaf2d8dda4, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+--- !u!95 &95698459720074086
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1605554054684730}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 5bad4de67ab176142b009d1a03dfd87a, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -2851,7 +2851,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Press ESC to enable Cursor
+  m_Text: You can close this panel to play this level without scoring
 --- !u!114 &114436264675696764
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4062,7 +4062,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b60a1ac8f4f962b4d9da96534cdc5962, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextDockIDAnimator: {fileID: 95198327916103202}
+  nextDockIDAnimator: {fileID: 95698459720074086}
   nextDockID: {fileID: 114426443314445820}
   angularMeter: {fileID: 114049686827180010}
   driftMeter: {fileID: 114234672845346146}
@@ -4081,6 +4081,7 @@ MonoBehaviour:
   endScore: {fileID: 114903690319198678}
   starsParent: {fileID: 1293761537562970}
   threeStarScore: 0
+  onlyOneStar: 0
 --- !u!114 &114888980351469590
 MonoBehaviour:
   m_ObjectHideFlags: 1

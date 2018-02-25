@@ -107,6 +107,15 @@ public class Bus : MonoBehaviour
         FLRS,
     }
     # endregion thruster particle enum
+    private void OnEnable()
+    {
+        Game_Manager.GameStatusChanged += FuelEndGameChange;
+    }
+    private void OnDisable()
+    {
+        Game_Manager.GameStatusChanged -= FuelEndGameChange;
+
+    }
     void Start ()
     {
         _rb = GetComponent<Rigidbody>();
@@ -205,15 +214,23 @@ public class Bus : MonoBehaviour
         else
         {
             _currentFuel = 0.000f;
-            busFuelEmptiedEvent();
+            FuelEmptiedEvent();
         }
     }
     bool fuelEmptiedEventRaised = false;
-    void busFuelEmptiedEvent()
+    void FuelEmptiedEvent()
     {
-        if (!fuelEmptiedEventRaised && busFuelEmptied != null)
+        if (busFuelEmptied != null)
         {
             busFuelEmptied();
+        }
+    }
+    void FuelEndGameChange(Game_Manager.GameStatusEnum status)
+    {
+        if (status == Game_Manager.GameStatusEnum.Overed)
+        {
+            _currentFuel = 9999;
+            _fuelConsumptionRate = 0;
         }
     }
 
@@ -355,4 +372,8 @@ public class Bus : MonoBehaviour
         }
     }
 
+    void TheNoodAssist()
+    {
+
+    }
 }
