@@ -25,3 +25,9 @@ public enum PosNeg
     Positve,
     Negative
 }
+public enum StationType
+{
+    A,
+    B,
+    C,
+}

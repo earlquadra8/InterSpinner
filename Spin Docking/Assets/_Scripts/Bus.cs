@@ -124,13 +124,13 @@ public class Bus : MonoBehaviour
         _maxFuel = _levelManager.levelMaxFuel;
         _currentFuel = _maxFuel;
         _activeThruster = new bool[_thrusterParticle.Length];
+
         
     }
 	void FixedUpdate ()
     {
         Movement();
         FullBrake();
-        //print(rb.velocity);
     }
 
     void Movement()
@@ -240,7 +240,7 @@ public class Bus : MonoBehaviour
         if (Input.GetButton("FullBrake") && _canControlSpin && _currentFuel > 0 && (_rb.velocity != Vector3.zero || _rb.angularVelocity != Vector3.zero))
         {
             isFullBrakeing = true;
-            if (_rb.velocity.magnitude >= _fullBrakeDriftThreshold)
+            if (_rb.velocity.magnitude >= _fullBrakeDriftThreshold)// shut the motion instead of lerp it to zero slowly, as the velocity is very low below this threshold.
             {
                 _rb.velocity = Vector3.Lerp(_rb.velocity, Vector3.zero, _fullBrakeRatio * Time.fixedDeltaTime);
             }
@@ -248,6 +248,7 @@ public class Bus : MonoBehaviour
             {
                 _rb.velocity = Vector3.zero;
             }
+
             if (_rb.angularVelocity.magnitude >= _fullBrakeSpinThreshold)
             {
                 _rb.angularVelocity = Vector3.Lerp(_rb.angularVelocity, Vector3.zero, _fullBrakeRatio * Time.fixedDeltaTime);
@@ -374,6 +375,36 @@ public class Bus : MonoBehaviour
 
     void TheNoodAssist()
     {
+        #region n
+        if (Input.GetKey(KeyCode.N))
+        {
+            int targetDockID = Game_Manager.NextDockID;
+            GameObject targetDock = GameObject.Find("Stations_Parent").transform.GetChild(targetDockID).gameObject;
+            StationType targetType = targetDock.transform.GetComponentInChildren<Station_Type>().type;
+            if (targetType == StationType.A)
+            {
+                //transform.up = targetDock.transform.up;
+                Vector3 newDir = Vector3.RotateTowards(transform.up, targetDock.transform.up, 0.05f, 0);
+                transform.up = newDir;
+                print(newDir);
+            }
+            else if (targetType == StationType.B)
+            {
+                //transform.forward = -targetDock.transform.up;
+                Vector3 newDir = Vector3.RotateTowards(transform.forward, -targetDock.transform.up, 0.05f, 0);
+                transform.forward = newDir;
+                print(newDir);
 
-    }
+            }
+            else if (targetType == StationType.C)
+            {
+                //transform.right = -targetDock.transform.up;
+                Vector3 newDir = Vector3.RotateTowards(transform.right, -targetDock.transform.up, 0.05f, 0);
+                transform.right = newDir;
+                print(newDir);
+
+            }
+        }
+        #endregion
+    }// Maybe someday
 }
