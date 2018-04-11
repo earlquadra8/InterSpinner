@@ -234,7 +234,7 @@ public class Bus : MonoBehaviour
         }
     }
 
-    bool isFullBrakeing; // added for checking if able to shut off thrusters; shut off thrusters if not match Fullbrake conditions
+    bool isFullBrakeing; // added for checking if able to shut off thrusters particles; shut off thrusters particles if not match Fullbrake conditions
     void FullBrake()
     {
         if (Input.GetButton("FullBrake") && _canControlSpin && _currentFuel > 0 && (_rb.velocity != Vector3.zero || _rb.angularVelocity != Vector3.zero))
@@ -373,7 +373,7 @@ public class Bus : MonoBehaviour
         }
     }
 
-    void TheNoodAssist()
+    void TheNoobAssist()
     {
         #region n
         if (Input.GetKey(KeyCode.N))

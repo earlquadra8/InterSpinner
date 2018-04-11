@@ -43,8 +43,8 @@ PlayerSettings:
   m_HolographicTrackingLossScreen: {fileID: 0}
   defaultScreenWidth: 1600
   defaultScreenHeight: 900
-  defaultScreenWidthWeb: 1280
-  defaultScreenHeightWeb: 720
+  defaultScreenWidthWeb: 1024
+  defaultScreenHeightWeb: 576
   m_StereoRenderingPath: 0
   m_ActiveColorSpace: 0
   m_MTRendering: 1
@@ -160,7 +160,7 @@ PlayerSettings:
   applicationIdentifier:
     Standalone: com.NeetStudio.InterSpinner
   buildNumber:
-    Standalone: 0
+    Standalone: 1
   AndroidBundleVersionCode: 1
   AndroidMinSdkVersion: 16
   AndroidTargetSdkVersion: 0

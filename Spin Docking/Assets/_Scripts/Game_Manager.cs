@@ -132,7 +132,6 @@ public class Game_Manager : MonoBehaviour
             int randomDockID;
             do
             {
-                //print("gm stationHolder not null? " + (stationHolder != null));
                 randomDockID = Random.Range(0, stationHolder.transform.childCount);
             }
             while (_nextDockID == randomDockID && stationHolder.transform.childCount > 1);
@@ -175,11 +174,11 @@ public class Game_Manager : MonoBehaviour
 
     void OutOfBoundaryBehaviour()
     {
-        if (_bus.transform.position.magnitude >= maxDistance && _bus.transform.position.magnitude < maxDistance + maxDistanceBuffer)
+        if (_bus.transform.position.magnitude >= maxDistance && _bus.transform.position.magnitude < maxDistance + maxDistanceBuffer)// near the boundary but not out of it
         {
-            _boundaryPosition = _bus.transform.position;
+            _boundaryPosition = _bus.transform.position;// set the boundary
         }
-        else if (_bus.transform.position.magnitude >= maxDistance + maxDistanceBuffer)
+        else if (_bus.transform.position.magnitude >= maxDistance + maxDistanceBuffer)// out of the boundary
         {
             _bus.transform.position = Vector3.MoveTowards(_bus.transform.position, _boundaryPosition, backToBoundStep);
             _bus.gameObject.GetComponent<Rigidbody>().drag = outOfBoundDrag;

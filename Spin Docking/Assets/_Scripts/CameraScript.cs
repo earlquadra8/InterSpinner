@@ -5,18 +5,20 @@ using UnityEngine;
 public class CameraScript : MonoBehaviour
 {
     [SerializeField]
-    float mouseSensitivity;
+    float _mouseSensitivity = 1;
     [SerializeField]
-    Vector2 offset;
+    Vector2 _offset = new Vector2(5, 0);
+    [SerializeField]
+    Vector2 _tiltLimit = new Vector2(-85, 85);
 
-    GameObject target;
+    GameObject _target;
 
-    float _pan;
     float _tilt;
+    float _pan;
 
 	void Start ()
     {
-        target = GameObject.FindGameObjectsWithTag("Player")[0];
+        _target = GameObject.FindGameObjectsWithTag("Player")[0];
     }
     private void Update()
     {
@@ -43,24 +45,25 @@ public class CameraScript : MonoBehaviour
 
     void SmoothFollow()
     {
-        if (offset.x < 0)
+        if (_offset.x < 0)
         {
-            offset = new Vector2(0, offset.y);
+            _offset = new Vector2(0, _offset.y);
         }
-        else if (offset.x > 10)
+        else if (_offset.x > 10)
         {
-            offset = new Vector3(10, offset.y);
+            _offset = new Vector3(10, _offset.y);
         }
 
-        offset -= new Vector2(Input.GetAxis("Mouse ScrollWheel"), 0);
-        transform.position = target.transform.position - transform.forward * offset.x + transform.up * offset.y;
+        _offset -= new Vector2(Input.GetAxis("Mouse ScrollWheel"), 0);
+        transform.position = _target.transform.position - transform.forward * _offset.x + transform.up * _offset.y;
     }
 
     void SmoothLook()
     {
-        _tilt += Input.GetAxis("Mouse X") * mouseSensitivity;
-        _pan -= (Input.GetAxis("Mouse Y") * mouseSensitivity);
-        transform.eulerAngles = new Vector3(_pan, _tilt);
+        _pan += Input.GetAxis("Mouse X") * _mouseSensitivity;
+        _tilt -= (Input.GetAxis("Mouse Y") * _mouseSensitivity);
+        _tilt = Mathf.Clamp(_tilt, _tiltLimit.x, _tiltLimit.y);
+        transform.eulerAngles = new Vector3(_tilt, _pan);
 
     }
 }

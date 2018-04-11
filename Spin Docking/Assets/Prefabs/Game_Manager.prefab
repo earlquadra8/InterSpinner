@@ -52,7 +52,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enableGuideOnStart: 0
-  maxDistance: 400
+  maxDistance: 300
   maxDistanceBuffer: 0.25
   outOfBoundDrag: 2
   backToBoundStep: 1
