@@ -345,7 +345,7 @@ public class Bus : MonoBehaviour
             }
             #endregion activate thruster sets according to conditions
         }
-        for (int i = 0; i < _activeThruster.Length; i++)
+        for (int i = 0; i < _activeThruster.Length; i++)// it put the value in the setting array (_activeThruster) into the thrusterParticle gameObject array (_thrusterParticle)
         {
             _thrusterParticle[i].SetActive(_activeThruster[i]);
         }
