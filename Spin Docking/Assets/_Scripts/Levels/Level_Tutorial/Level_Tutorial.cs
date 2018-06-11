@@ -72,6 +72,7 @@ public class Level_Tutorial : MonoBehaviour
         RefillFuel();
     }
 
+    #region Fuel empty
     void OnbusFuelEmptied()
     {
         refillKey.SetActive(true);
@@ -84,6 +85,7 @@ public class Level_Tutorial : MonoBehaviour
             _bus.CurrentFuel = _bus.MaxFuel;
         }
     }
+    #endregion Fuel empty
 
     #region Set up all tutorial objects
     void AddToArray(GameObject parent, GameObject[] array)
