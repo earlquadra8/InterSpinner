@@ -106,6 +106,21 @@ public class Bus : MonoBehaviour
         FLLS,
         FLRS,
     }
+
+    #region particle enable thusterNum[], define thruster set to be enabled according to possible movement
+    thrusterNum[] horP = new thrusterNum[] { thrusterNum.RULS, thrusterNum.RLLS, thrusterNum.FULS, thrusterNum.FLLS };
+    thrusterNum[] horM = new thrusterNum[] { thrusterNum.RURS, thrusterNum.RLRS, thrusterNum.FURS, thrusterNum.FLRS };
+    thrusterNum[] verP = new thrusterNum[] { thrusterNum.RLLS, thrusterNum.RLRS, thrusterNum.FLLS, thrusterNum.FLRS };
+    thrusterNum[] verM = new thrusterNum[] { thrusterNum.RULS, thrusterNum.RURS, thrusterNum.FULS, thrusterNum.FURS };
+    thrusterNum[] frwP = new thrusterNum[] { thrusterNum.RULM, thrusterNum.RURM, thrusterNum.RLLM, thrusterNum.RLRM };
+    thrusterNum[] frwM = new thrusterNum[] { thrusterNum.FULM, thrusterNum.FURM, thrusterNum.FLLM, thrusterNum.FLRM };
+    thrusterNum[] pitP = new thrusterNum[] { thrusterNum.FULS, thrusterNum.FURS, thrusterNum.RLLS, thrusterNum.RLRS };
+    thrusterNum[] pitM = new thrusterNum[] { thrusterNum.RULS, thrusterNum.RURS, thrusterNum.FLLS, thrusterNum.FLRS };
+    thrusterNum[] yawP = new thrusterNum[] { thrusterNum.FULS, thrusterNum.FLLS, thrusterNum.RURS, thrusterNum.RLRS, thrusterNum.FURM, thrusterNum.FLRM, thrusterNum.RULM, thrusterNum.RLLM };
+    thrusterNum[] yawM = new thrusterNum[] { thrusterNum.FURS, thrusterNum.FLRS, thrusterNum.RULS, thrusterNum.RLLS, thrusterNum.FULM, thrusterNum.FLLM, thrusterNum.RURM, thrusterNum.RLRM };
+    thrusterNum[] rolP = new thrusterNum[] { thrusterNum.FULS, thrusterNum.RULS, thrusterNum.FLRS, thrusterNum.RLRS };
+    thrusterNum[] rolM = new thrusterNum[] { thrusterNum.FLLS, thrusterNum.RLLS, thrusterNum.FURS, thrusterNum.RURS };
+    #endregion particle enable thusterNum[]
     # endregion thruster particle enum
     private void OnEnable()
     {
@@ -267,23 +282,11 @@ public class Bus : MonoBehaviour
             isFullBrakeing = false;
         }
     }
+
+
     void ThrusterVFXControl(float hor, float ver, float frw, float pit, float yaw, float rol)
     {
-        #region particle enable thusterNum[], define thruster set to be enabled according to possible movement
-        thrusterNum[] horP = new thrusterNum[] { thrusterNum.RULS, thrusterNum.RLLS, thrusterNum.FULS, thrusterNum.FLLS };
-        thrusterNum[] horM = new thrusterNum[] { thrusterNum.RURS, thrusterNum.RLRS, thrusterNum.FURS, thrusterNum.FLRS };
-        thrusterNum[] verP = new thrusterNum[] { thrusterNum.RLLS, thrusterNum.RLRS, thrusterNum.FLLS, thrusterNum.FLRS };
-        thrusterNum[] verM = new thrusterNum[] { thrusterNum.RULS, thrusterNum.RURS, thrusterNum.FULS, thrusterNum.FURS };
-        thrusterNum[] frwP = new thrusterNum[] { thrusterNum.RULM, thrusterNum.RURM, thrusterNum.RLLM, thrusterNum.RLRM };
-        thrusterNum[] frwM = new thrusterNum[] { thrusterNum.FULM, thrusterNum.FURM, thrusterNum.FLLM, thrusterNum.FLRM };
-        thrusterNum[] pitP = new thrusterNum[] { thrusterNum.FULS, thrusterNum.FURS, thrusterNum.RLLS, thrusterNum.RLRS };
-        thrusterNum[] pitM = new thrusterNum[] { thrusterNum.RULS, thrusterNum.RURS, thrusterNum.FLLS, thrusterNum.FLRS };
-        thrusterNum[] yawP = new thrusterNum[] { thrusterNum.FULS, thrusterNum.FLLS, thrusterNum.RURS, thrusterNum.RLRS, thrusterNum.FURM, thrusterNum.FLRM, thrusterNum.RULM, thrusterNum.RLLM };
-        thrusterNum[] yawM = new thrusterNum[] { thrusterNum.FURS, thrusterNum.FLRS, thrusterNum.RULS, thrusterNum.RLLS, thrusterNum.FULM, thrusterNum.FLLM, thrusterNum.RURM, thrusterNum.RLRM };
-        thrusterNum[] rolP = new thrusterNum[] { thrusterNum.FULS, thrusterNum.RULS, thrusterNum.FLRS, thrusterNum.RLRS };
-        thrusterNum[] rolM = new thrusterNum[] { thrusterNum.FLLS, thrusterNum.RLLS, thrusterNum.FURS, thrusterNum.RURS };
-        #endregion particle enable thusterNum[]
-
+        //here is where those enum were
         if (!isFullBrakeing || _currentFuel <= 0)// FullBrakeing is a special condition, bcoz thrust would be stopped while having FullBrake button pressed, unlike the other input that thrust will be stopped while have no button pressed.
         {
             for (int i = 0; i < _activeThruster.Length; i++)
